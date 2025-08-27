@@ -1,2 +1,3 @@
 # template.io
-Template Management System
+
+Template.io is a system built to help businesses easily create, manage, and send document and email templates. Users can design reusable templates with dynamic fields that automatically fill in required data. It supports different user roles like System Admin, Company Admin, Employees, and Document Signers, each with specific access. One of the key features is mass data processing, where users can upload a CSV or Excel file to generate and send multiple documents at once. The system also supports scheduling emails, tracking delivery, and collecting digital signatures. Template.io helps save time, reduce errors, and maintain consistency across teams.

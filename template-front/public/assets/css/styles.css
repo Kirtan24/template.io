@@ -1,0 +1,75 @@
+/* Add this CSS to your styles */
+
+/* Center text horizontally in the column */
+.centered-column {
+    text-align: center !important;
+    /* Important to override inline styles if necessary */
+}
+
+/* Ensure that buttons and other content are also centered */
+.centered-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gHjCUF {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 100%;
+    width: 100%;
+    outline: none;
+    user-select: none;
+    overflow: hidden;
+}
+
+/* Override for row containers if they are flexible, for example, .hjJYSJ */
+.hjJYSJ {
+    display: flex;
+    justify-content: center;
+    /* Center the children horizontally */
+    align-items: center;
+    /* Center the children vertically */
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: 0;
+    max-width: 100%;
+    min-width: 100px;
+}
+
+/* Add to your existing .pEQeF class if necessary to align content */
+.pEQeF {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Center the content horizontally */
+    box-sizing: border-box;
+    line-height: normal;
+    padding-left: 16px;
+    padding-right: 16px;
+    word-break: break-word;
+}
+
+.bhiwcZ {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 100%;
+    width: 100%;
+    outline: none;
+    user-select: none;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+/* Target the DataTable to center text for all cells */
+.table-centered .rdt_TableCell {
+    text-align: center;
+}
+
+/* styles.css or your component's CSS file */
+.centered-cell {
+    text-align: center;
+}

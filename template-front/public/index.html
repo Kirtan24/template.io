@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="%PUBLIC_URL%/template.io.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Web site created using create-react-app" />
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+  <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+
+
+  <!-- Bootstrap Css -->
+  <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+  <!-- Icons Css -->
+  <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+  <!-- App Css-->
+  <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+
+  <link href="assets/css/styles.css" id="app-style" rel="stylesheet" type="text/css" />
+
+
+
+  <!-- DataTables -->
+  <link href="https://themesbrand.com/skote/layouts/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css"
+    rel="stylesheet" type="text/css" />
+  <link
+    href="https://themesbrand.com/skote/layouts/assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css"
+    rel="stylesheet" type="text/css" />
+
+  <!-- Responsive datatable examples -->
+  <link
+    href="https://themesbrand.com/skote/layouts/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css"
+    rel="stylesheet" type="text/css" />
+
+  <style>
+    #side-menu .active,
+    #side-menu .active i {
+      color: #FFFFFF !important;
+    }
+
+    .swal2-title {
+      font-size: 14px !important;
+    }
+
+    .swal2-html-container,
+    .swal2-toast {
+      font-size: 15px !important;
+    }
+
+    .swal2-confirm {
+      font-size: 15px !important;
+    }
+
+    .skeleton-effect {
+      background: linear-gradient(90deg, #f6f7f8 25%, #edeef1 50%, #f6f7f8 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite linear;
+      filter: blur(5px);
+      /* Slight blur for a soft effect */
+    }
+
+    @keyframes shimmer {
+      0% {
+        filter: blur(1px);
+        background-position: -200% 0;
+      }
+
+      100% {
+        filter: blur(2px);
+        background-position: 200% 0;
+      }
+    }
+
+    .no-hover-effect:hover {
+      text-decoration: none !important;
+      color: white !important;
+    }
+
+    .no-hover-effect i:hover {
+      transform: none !important;
+      color: white !important;
+    }
+
+
+    .auth-body-bg {
+      min-height: 100vh;
+    }
+
+    .auth-full-bg,
+    .auth-full-page-content {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      height: 100vh;
+    }
+
+    .auth-full-page-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .row.g-0 {
+      margin-bottom: 0;
+    }
+
+
+    .editor-wrapper {
+      position: relative;
+    }
+
+    .spinner-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 500px;
+      background-color: rgba(255, 255, 255, 0.6);
+      z-index: 10;
+    }
+
+    .tox-notifications-container {
+      display: none;
+    }
+
+    /* SearchBar.css */
+    .app-search input{
+      width: 250px;
+    }
+
+    .app-search .dropdown-menu {
+      max-height: 250px;
+      overflow-y: auto;
+      border-radius: 0.25rem;
+    }
+
+    .app-search .dropdown-item.active {
+      background-color: #e8f0fe;
+    }
+
+    .app-search mark {
+      background-color: transparent;
+      color: #111;
+      font-weight: bold;
+      padding: 0;
+      margin: 0;
+      line-height: inherit;
+      font-size: inherit;
+      font-style: normal;
+    }
+  </style>
+
+  <title>Template.io</title>
+</head>
+
+<body data-sidebar="dark">
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
+
+  <!-- JAVASCRIPT -->
+  <script src="https://themesbrand.com/skote/layouts/assets/libs/jquery/jquery.min.js"></script>
+  <script src="https://themesbrand.com/skote/layouts/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="https://themesbrand.com/skote/layouts/assets/libs/metismenu/metisMenu.min.js"></script>
+  <script src="https://themesbrand.com/skote/layouts/assets/libs/simplebar/simplebar.min.js"></script>
+  <script src="https://themesbrand.com/skote/layouts/assets/libs/node-waves/waves.min.js"></script>
+
+
+
+
+
+
+
+
+  <!-- Required datatable js -->
+  <script src="https://themesbrand.com/skote/layouts/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+  <script
+    src="https://themesbrand.com/skote/layouts/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+  <!-- Buttons examples -->
+  <script
+    src="https://themesbrand.com/skote/layouts/assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+  <script
+    src="https://themesbrand.com/skote/layouts/assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+  <script src="https://themesbrand.com/skote/layouts/assets/libs/jszip/jszip.min.js"></script>
+  <script src="https://themesbrand.com/skote/layouts/assets/libs/pdfmake/build/pdfmake.min.js"></script>
+  <script src="https://themesbrand.com/skote/layouts/assets/libs/pdfmake/build/vfs_fonts.js"></script>
+  <script
+    src="https://themesbrand.com/skote/layouts/assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
+  <script
+    src="https://themesbrand.com/skote/layouts/assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
+  <script
+    src="https://themesbrand.com/skote/layouts/assets/libs/datatables.net-buttons/js/buttons.colVis.min.js"></script>
+
+  <!-- Responsive examples -->
+  <script
+    src="https://themesbrand.com/skote/layouts/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+  <script
+    src="https://themesbrand.com/skote/layouts/assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+
+  <!-- Datatable init js -->
+  <script src="https://themesbrand.com/skote/layouts/assets/js/pages/datatables.init.js"></script>
+
+
+
+
+  <!-- App js -->
+  <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="assets/js/app.js"></script> -->
+</body>
+
+</html>

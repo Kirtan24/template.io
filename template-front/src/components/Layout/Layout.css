@@ -1,0 +1,148 @@
+#layout-wrapper {
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* .vertical-menu {
+  position: fixed;
+  top: 70px;
+  left: 0;
+  bottom: 0;
+  width: 250px;
+  z-index: 1001;
+  background: #2a3042;
+  transition: all 0.3s ease-in-out;
+} */
+
+/* Icon only mode styles */
+.icon-only .vertical-menu {
+  width: 70px;
+}
+
+.icon-only .vertical-menu .menu-title,
+.icon-only .vertical-menu span:not(.menu-title) {
+  display: none;
+}
+
+.icon-only .vertical-menu #sidebar-menu .waves-effect i {
+  font-size: 22px;
+  margin-right: 0;
+}
+
+.icon-only .vertical-menu #sidebar-menu {
+  text-align: center;
+}
+
+.navbar-brand-box {
+  transition: width 0.3s ease-in-out !important;
+}
+
+.icon-only .navbar-brand-box .logo-lg {
+  display: none;
+}
+
+.icon-only .navbar-brand-box .logo-sm {
+  display: block;
+}
+
+/* Default state for logos */
+.navbar-brand-box .logo-lg {
+  display: block;
+}
+
+.navbar-brand-box .logo-sm {
+  display: none;
+}
+
+.navbar-brand-box.c-m {
+  width: 80px !important;
+  padding: 0 1rem;
+}
+
+.main-content {
+  margin-left: 250px;
+  transition: all 0.3s ease-in-out;
+}
+
+.icon-only .main-content {
+  margin-left: 80px;
+}
+
+/* Mobile styles */
+@media (max-width: 991.98px) {
+  .vertical-menu {
+    transform: translateX(-250px);
+  }
+
+  .main-content {
+    margin-left: 0;
+  }
+
+  .navbar-brand-box .logo-lg {
+    display: none;
+  }
+
+  .navbar-brand-box .logo-sm {
+    display: block;
+  }
+
+  /* Show sidebar when enabled */
+  body.sidebar-enable .vertical-menu {
+    transform: translateX(0);
+  }
+
+  /* Overlay */
+  body.sidebar-enable::before {
+    content: '';
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+  }
+}
+
+/* Desktop styles */
+@media (min-width: 992px) {
+  .vertical-menu {
+    transform: translateX(0);
+  }
+
+  .icon-only .vertical-menu {
+    transform: translateX(0);
+  }
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 250px;
+  width: calc(100% - 250px);
+  height: 60px;
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
+  z-index: 999;
+}
+
+.footer.icon-only {
+  left: 80px;
+  width: calc(100% - 80px);
+}
+
+@media (max-width: 991.98px) {
+  .vertical-menu {
+    transition: width 0.3s ease-in-out;
+  }
+
+  .navbar-brand-box {
+    width: 80px;
+  }
+
+  .footer {
+    left: 0;
+    width: 100%;
+  }
+}

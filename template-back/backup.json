@@ -1,0 +1,1453 @@
+{
+  "companies": [
+    {
+      "_id": "67c028b96bbe6df6ff620c5e",
+      "name": "Tech Innovations Ltd.",
+      "email": "contact@techinnovations.com",
+      "contactNumber": "123-456-7890",
+      "address": "123 Tech Street, Silicon Valley, CA",
+      "plan": "professional",
+      "permissions": [
+        "67bf5ea0fb8a2e9f773050d8",
+        "67bf5ea0fb8a2e9f773050db",
+        "67bf5ea0fb8a2e9f773050d9",
+        "67bf5ea0fb8a2e9f773050da",
+        "67bf5ea0fb8a2e9f773050de",
+        "67bf5ea0fb8a2e9f773050e1",
+        "67bf5ea0fb8a2e9f773050df",
+        "67bf5ea0fb8a2e9f773050e0",
+        "67bf5ea0fb8a2e9f773050ea",
+        "67bf5ea0fb8a2e9f773050e6",
+        "67bf5ea0fb8a2e9f773050e9",
+        "67c0c605d4c82d5aa4b5af25",
+        "67bf5ea0fb8a2e9f773050e7",
+        "67bf5ea0fb8a2e9f773050e8",
+        "67c056c7bb3b8c72cc725c53",
+        "67c056c7bb3b8c72cc725c56",
+        "67bf5ea0fb8a2e9f773050dc"
+      ],
+      "companyStatus": "active",
+      "deleted": false,
+      "createdAt": "2025-02-27T08:56:25.485Z",
+      "updatedAt": "2025-03-26T12:11:50.872Z",
+      "__v": 16,
+      "activeDashboard": 0
+    },
+    {
+      "_id": "67c05d1b8fe2f7ebfbe593ae",
+      "name": "Keshav Infotech Ltd.",
+      "email": "keshav@infotech.com",
+      "contactNumber": "9487568495",
+      "address": "123 Tech Street, Silicon Valley, CA",
+      "plan": "professional",
+      "permissions": [
+        "67bf5ea0fb8a2e9f773050de",
+        "67bf5ea0fb8a2e9f773050e6",
+        "67bf5ea0fb8a2e9f773050ea",
+        "67bf5ea0fb8a2e9f773050d8",
+        "67bf5ea0fb8a2e9f773050da",
+        "67bf5ea0fb8a2e9f773050db",
+        "67bf5ea0fb8a2e9f773050dc",
+        "67bf5ea0fb8a2e9f773050df",
+        "67bf5ea0fb8a2e9f773050e0",
+        "67bf5ea0fb8a2e9f773050e1",
+        "67bf5ea0fb8a2e9f773050e7",
+        "67c0c605d4c82d5aa4b5af25",
+        "67bf5ea0fb8a2e9f773050e8",
+        "67bf5ea0fb8a2e9f773050e9",
+        "67c056c7bb3b8c72cc725c53",
+        "67c056c7bb3b8c72cc725c56",
+        "67e3ebe4abe632ac789fef63",
+        "67bf5ea0fb8a2e9f773050d9",
+        "67ea8b15e3da734f0ee0d490",
+        "67bf5ea0fb8a2e9f773050eb"
+      ],
+      "companyStatus": "active",
+      "deleted": false,
+      "createdAt": "2025-02-27T12:39:55.096Z",
+      "updatedAt": "2025-03-31T12:43:29.586Z",
+      "__v": 29,
+      "activeDashboard": 1,
+      "lastLoggedInUser": [
+        "67c060d98882176e55b81dd9"
+      ],
+      "lastUpdated": "2025-03-31T12:43:29.586Z"
+    },
+    {
+      "_id": "67cccf52bc2fbc2b8eac2acd",
+      "name": "SMTP",
+      "email": "kirtan@gmail.com",
+      "contactNumber": "9925132322",
+      "address": "Flat no: B1-1004, Shyamal Upvan Society, Opp. Sagun Party plot, Mavdi-kankot road, Rajko, Gujarat.",
+      "activeDashboard": 0,
+      "plan": "enterprise",
+      "permissions": [
+        "67bf5ea0fb8a2e9f773050d8",
+        "67bf5ea0fb8a2e9f773050db",
+        "67bf5ea0fb8a2e9f773050d9",
+        "67bf5ea0fb8a2e9f773050da",
+        "67bf5ea0fb8a2e9f773050dc",
+        "67bf5ea0fb8a2e9f773050de",
+        "67bf5ea0fb8a2e9f773050e1",
+        "67bf5ea0fb8a2e9f773050df",
+        "67bf5ea0fb8a2e9f773050e0",
+        "67bf5ea0fb8a2e9f773050e6",
+        "67bf5ea0fb8a2e9f773050e9",
+        "67bf5ea0fb8a2e9f773050e7",
+        "67c0c605d4c82d5aa4b5af25",
+        "67bf5ea0fb8a2e9f773050e8",
+        "67e3ebe4abe632ac789fef63",
+        "67bf5ea0fb8a2e9f773050ea",
+        "67bf5ea0fb8a2e9f773050eb",
+        "67c056c6bb3b8c72cc725c50",
+        "67c056c7bb3b8c72cc725c53",
+        "67c056c7bb3b8c72cc725c56"
+      ],
+      "companyStatus": "active",
+      "deleted": false,
+      "createdAt": "2025-03-08T23:14:26.071Z",
+      "updatedAt": "2025-03-30T18:33:54.304Z",
+      "__v": 4,
+      "lastLoggedInUser": [],
+      "lastUpdated": "2025-03-30T18:26:04.324Z"
+    },
+    {
+      "_id": "67ce8d7f2fdef1a11e6803fb",
+      "name": "Citrix",
+      "email": "citrix@gmail.com",
+      "contactNumber": "9925315511",
+      "address": "Banglore",
+      "activeDashboard": 2,
+      "plan": "enterprise",
+      "permissions": [
+        "67bf5ea0fb8a2e9f773050d8",
+        "67bf5ea0fb8a2e9f773050de",
+        "67bf5ea0fb8a2e9f773050e6",
+        "67bf5ea0fb8a2e9f773050ea",
+        "67bf5ea0fb8a2e9f773050d9",
+        "67bf5ea0fb8a2e9f773050da",
+        "67bf5ea0fb8a2e9f773050db",
+        "67bf5ea0fb8a2e9f773050df",
+        "67bf5ea0fb8a2e9f773050e0",
+        "67bf5ea0fb8a2e9f773050e1",
+        "67bf5ea0fb8a2e9f773050e7",
+        "67bf5ea0fb8a2e9f773050e8",
+        "67c0c605d4c82d5aa4b5af25",
+        "67bf5ea0fb8a2e9f773050e9",
+        "67c056c7bb3b8c72cc725c53",
+        "67bf5ea0fb8a2e9f773050eb",
+        "67c056c6bb3b8c72cc725c50",
+        "67c056c7bb3b8c72cc725c56",
+        "67e3ebe4abe632ac789fef63",
+        "67bf5ea0fb8a2e9f773050dc"
+      ],
+      "companyStatus": "active",
+      "deleted": false,
+      "createdAt": "2025-03-10T06:58:07.405Z",
+      "updatedAt": "2025-03-30T18:39:13.005Z",
+      "__v": 4,
+      "lastLoggedInUser": [
+        "67e98e6478150556c17e7af7",
+        "67e98f5200f5b72160e7bc50"
+      ],
+      "lastUpdated": "2025-03-30T18:37:26.679Z"
+    },
+    {
+      "_id": "67ea7dbe90a82d00d0277cc9",
+      "name": "TCS",
+      "email": "tcs@gmail.com",
+      "contactNumber": "9925315511",
+      "address": "Gandhinagar",
+      "activeDashboard": 0,
+      "plan": "basic",
+      "permissions": [
+        "67bf5ea0fb8a2e9f773050de",
+        "67bf5ea0fb8a2e9f773050e6",
+        "67bf5ea0fb8a2e9f773050df",
+        "67bf5ea0fb8a2e9f773050e0",
+        "67bf5ea0fb8a2e9f773050e1",
+        "67bf5ea0fb8a2e9f773050e9",
+        "67bf5ea0fb8a2e9f773050e7",
+        "67e3ebe4abe632ac789fef63",
+        "67bf5ea0fb8a2e9f773050e8",
+        "67c0c605d4c82d5aa4b5af25",
+        "67bf5ea0fb8a2e9f773050ea",
+        "67c056c7bb3b8c72cc725c53"
+      ],
+      "companyStatus": "active",
+      "lastLoggedInUser": [],
+      "deleted": false,
+      "createdAt": "2025-03-31T11:34:22.536Z",
+      "updatedAt": "2025-03-31T12:43:22.498Z",
+      "__v": 6,
+      "lastUpdated": "2025-03-31T12:41:07.808Z"
+    },
+    {
+      "_id": "67ea9068370caeed23d846bb",
+      "name": "Global Fintech",
+      "email": "fintech@global.com",
+      "contactNumber": "1235671231",
+      "address": "Gift City, Gandhinagar",
+      "activeDashboard": 0,
+      "plan": "enterprise",
+      "permissions": [],
+      "companyStatus": "suspended",
+      "lastLoggedInUser": [],
+      "deleted": false,
+      "createdAt": "2025-03-31T12:54:00.351Z",
+      "updatedAt": "2025-03-31T12:54:52.359Z",
+      "__v": 0
+    }
+  ],
+  "emailTemplates": [
+    {
+      "_id": "67e9245fa9dd72fa90df322d",
+      "template_name": "Email",
+      "subject": "email",
+      "body": "<p>sdasdd</p>",
+      "companyId": "67c05d1b8fe2f7ebfbe593ae",
+      "deleted": false,
+      "createdAt": "2025-03-30T11:00:47.206Z",
+      "updatedAt": "2025-03-30T11:00:47.206Z",
+      "__v": 0
+    },
+    {
+      "_id": "67e999e9a136dcda714519aa",
+      "template_name": "admin",
+      "subject": "Email Subject",
+      "body": "<p>admin email template</p>",
+      "companyId": null,
+      "deleted": false,
+      "createdAt": "2025-03-30T19:22:17.370Z",
+      "updatedAt": "2025-03-30T19:22:17.370Z",
+      "__v": 0
+    }
+  ],
+  "permissions": [
+    {
+      "_id": "67bf5ea0fb8a2e9f773050d4",
+      "name": "create_credentials",
+      "display_name": "Create Credentials",
+      "category": "Credentials",
+      "deleted": false,
+      "__v": 0,
+      "createdAt": "2025-02-26T18:34:08.299Z",
+      "updatedAt": "2025-02-26T18:34:08.299Z"
+    },
+    {
+      "_id": "67bf5ea0fb8a2e9f773050d5",
+      "name": "update_credentials",
+      "display_name": "Update Credentials",
+      "category": "Credentials",
+      "deleted": false,
+      "__v": 0,
+      "createdAt": "2025-02-26T18:34:08.299Z",
+      "updatedAt": "2025-02-26T18:34:08.299Z"
+    },
+    {
+      "_id": "67bf5ea0fb8a2e9f773050d6",
+      "name": "delete_credentials",
+      "display_name": "Delete Credentials",
+      "category": "Credentials",
+      "deleted": false,
+      "__v": 0,
+      "createdAt": "2025-02-26T18:34:08.299Z",
+      "updatedAt": "2025-02-26T18:34:08.299Z"
+    },
+    {
+      "_id": "67bf5ea0fb8a2e9f773050d7",
+      "name": "restore_credentials",
+      "display_name": "Restore Credentials",
+      "category": "Credentials",
+      "deleted": false,
+      "__v": 0,
+      "createdAt": "2025-02-26T18:34:08.299Z",
+      "updatedAt": "2025-02-26T18:34:08.299Z"
+    },
+    {
+      "_id": "67bf5ea0fb8a2e9f773050d8",
+      "name": "view_users",
+      "display_name": "View Users",
+      "category": "Users",
+      "deleted": false,
+      "__v": 0,
+      "createdAt": "2025-02-26T18:34:08.299Z",
+      "updatedAt": "2025-02-26T18:34:08.299Z"
+    },
+    {
+      "_id": "67bf5ea0fb8a2e9f773050d9",
+      "name": "create_users",
+      "display_name": "Create Users",
+      "category": "Users",
+      "deleted": false,
+      "__v": 0,
+      "createdAt": "2025-02-26T18:34:08.299Z",
+      "updatedAt": "2025-02-26T18:34:08.299Z"
+    },
+    {
+      "_id": "67bf5ea0fb8a2e9f773050da",
+      "name": "update_users",
+      "display_name": "Update Users",
+      "category": "Users",
+      "deleted": false,
+      "__v": 0,
+      "createdAt": "2025-02-26T18:34:08.299Z",
+      "updatedAt": "2025-02-26T18:34:08.299Z"
+    },
+    {
+      "_id": "67bf5ea0fb8a2e9f773050db",
+      "name": "delete_users",
+      "display_name": "Delete Users",
+      "category": "Users",
+      "deleted": false,
+      "__v": 0,
+      "createdAt": "2025-02-26T18:34:08.299Z",
+      "updatedAt": "2025-02-26T18:34:08.299Z"
+    },
+    {
+      "_id": "67bf5ea0fb8a2e9f773050dc",
+      "name": "manage_permissions",
+      "display_name": "Manage Permissions",
+      "category": "Permissions",
+      "deleted": false,
+      "__v": 0,
+      "createdAt": "2025-02-26T18:34:08.299Z",
+      "updatedAt": "2025-02-26T18:34:08.299Z"
+    },
+    {
+      "_id": "67bf5ea0fb8a2e9f773050de",
+      "name": "view_emailtemplate",
+      "display_name": "View Email Templates",
+      "category": "Email Template",
+      "deleted": false,
+      "__v": 0,
+      "createdAt": "2025-02-26T18:34:08.299Z",
+      "updatedAt": "2025-02-26T18:34:08.299Z"
+    },
+    {
+      "_id": "67bf5ea0fb8a2e9f773050df",
+      "name": "create_emailtemplate",
+      "display_name": "Create Email Template",
+      "category": "Email Template",
+      "deleted": false,
+      "__v": 0,
+      "createdAt": "2025-02-26T18:34:08.300Z",
+      "updatedAt": "2025-02-26T18:34:08.300Z"
+    },
+    {
+      "_id": "67bf5ea0fb8a2e9f773050e0",
+      "name": "update_emailtemplate",
+      "display_name": "Update Email Template",
+      "category": "Email Template",
+      "deleted": false,
+      "__v": 0,
+      "createdAt": "2025-02-26T18:34:08.300Z",
+      "updatedAt": "2025-02-26T18:34:08.300Z"
+    },
+    {
+      "_id": "67bf5ea0fb8a2e9f773050e1",
+      "name": "delete_emailtemplate",
+      "display_name": "Delete Email Template",
+      "category": "Email Template",
+      "deleted": false,
+      "__v": 0,
+      "createdAt": "2025-02-26T18:34:08.300Z",
+      "updatedAt": "2025-02-26T18:34:08.300Z"
+    },
+    {
+      "_id": "67bf5ea0fb8a2e9f773050e6",
+      "name": "view_templates",
+      "display_name": "View Templates",
+      "category": "Templates",
+      "deleted": false,
+      "__v": 0,
+      "createdAt": "2025-02-26T18:34:08.300Z",
+      "updatedAt": "2025-02-26T18:34:08.300Z"
+    },
+    {
+      "_id": "67bf5ea0fb8a2e9f773050e7",
+      "name": "create_templates",
+      "display_name": "Create Template",
+      "category": "Templates",
+      "deleted": false,
+      "__v": 0,
+      "createdAt": "2025-02-26T18:34:08.300Z",
+      "updatedAt": "2025-02-26T18:34:08.300Z"
+    },
+    {
+      "_id": "67bf5ea0fb8a2e9f773050e8",
+      "name": "update_templates",
+      "display_name": "Update Template",
+      "category": "Templates",
+      "deleted": false,
+      "__v": 0,
+      "createdAt": "2025-02-26T18:34:08.300Z",
+      "updatedAt": "2025-02-26T18:34:08.300Z"
+    },
+    {
+      "_id": "67bf5ea0fb8a2e9f773050e9",
+      "name": "delete_templates",
+      "display_name": "Delete Template",
+      "category": "Templates",
+      "deleted": false,
+      "__v": 0,
+      "createdAt": "2025-02-26T18:34:08.300Z",
+      "updatedAt": "2025-02-26T18:34:08.300Z"
+    },
+    {
+      "_id": "67bf5ea0fb8a2e9f773050ea",
+      "name": "view_inbox",
+      "display_name": "View Inbox",
+      "category": "Inbox",
+      "deleted": false,
+      "__v": 0,
+      "createdAt": "2025-02-26T18:34:08.300Z",
+      "updatedAt": "2025-02-26T18:34:08.300Z"
+    },
+    {
+      "_id": "67bf5ea0fb8a2e9f773050eb",
+      "name": "send_mail",
+      "display_name": "Send Email",
+      "category": "Inbox",
+      "deleted": false,
+      "__v": 0,
+      "createdAt": "2025-02-26T18:34:08.300Z",
+      "updatedAt": "2025-03-27T14:55:10.485Z"
+    },
+    {
+      "_id": "67c056c6bb3b8c72cc725c50",
+      "name": "view_companies",
+      "display_name": "View Companies",
+      "category": "Company",
+      "deleted": false,
+      "createdAt": "2025-02-27T12:12:54.996Z",
+      "updatedAt": "2025-03-02T16:43:38.253Z",
+      "__v": 0
+    },
+    {
+      "_id": "67c056c7bb3b8c72cc725c53",
+      "name": "view_company",
+      "display_name": "View Company",
+      "category": "Company",
+      "deleted": false,
+      "createdAt": "2025-02-27T12:12:55.008Z",
+      "updatedAt": "2025-03-02T16:43:44.471Z",
+      "__v": 0
+    },
+    {
+      "_id": "67c056c7bb3b8c72cc725c56",
+      "name": "view_company_employee",
+      "display_name": "View Company Employee",
+      "category": "Company",
+      "deleted": false,
+      "createdAt": "2025-02-27T12:12:55.016Z",
+      "updatedAt": "2025-03-02T16:43:51.325Z",
+      "__v": 0
+    },
+    {
+      "_id": "67c0c605d4c82d5aa4b5af25",
+      "name": "send_templates",
+      "display_name": "Send Templates",
+      "category": "Templates",
+      "deleted": false,
+      "createdAt": "2025-02-27T20:07:33.487Z",
+      "updatedAt": "2025-02-27T20:07:33.487Z",
+      "__v": 0
+    },
+    {
+      "_id": "67c5f89f486775eb2742c6a4",
+      "name": "only_admin",
+      "display_name": "Only Admin",
+      "category": "Admin",
+      "deleted": false,
+      "createdAt": "2025-03-03T18:44:47.534Z",
+      "updatedAt": "2025-03-03T18:44:47.534Z",
+      "__v": 0
+    },
+    {
+      "_id": "67e3ebe4abe632ac789fef63",
+      "name": "change_status_template",
+      "display_name": "Change Status Template",
+      "category": "Templates",
+      "deleted": false,
+      "createdAt": "2025-03-26T11:58:28.312Z",
+      "updatedAt": "2025-03-26T13:01:50.502Z",
+      "__v": 0
+    },
+    {
+      "_id": "67ea8b15e3da734f0ee0d490",
+      "name": "schedule_template",
+      "display_name": "Schedule Template",
+      "category": "Templates",
+      "deleted": false,
+      "createdAt": "2025-03-31T12:31:17.219Z",
+      "updatedAt": "2025-03-31T12:31:17.219Z",
+      "__v": 0
+    }
+  ],
+  "templates": [
+    {
+      "_id": "67e8129fee673b38c5925eac",
+      "name": "Testing",
+      "filename": "template_1743262330992.docx",
+      "companyId": null,
+      "emailTemplate": "67e9245fa9dd72fa90df322d",
+      "isActive": true,
+      "isSignature": false,
+      "description": "Testing wihout the sign",
+      "fields": [
+        {
+          "name": "date",
+          "placeholder": "",
+          "inputType": "date"
+        },
+        {
+          "name": "party1_name",
+          "placeholder": "",
+          "inputType": "text"
+        },
+        {
+          "name": "party1_address",
+          "placeholder": "",
+          "inputType": "textarea"
+        },
+        {
+          "name": "party2_name",
+          "placeholder": "",
+          "inputType": "text"
+        },
+        {
+          "name": "party2_address",
+          "placeholder": "",
+          "inputType": "textarea"
+        },
+        {
+          "name": "payment_amount",
+          "placeholder": "",
+          "inputType": "text"
+        },
+        {
+          "name": "start_date",
+          "placeholder": "",
+          "inputType": "date"
+        },
+        {
+          "name": "end_date",
+          "placeholder": "",
+          "inputType": "date"
+        }
+      ],
+      "deleted": false,
+      "createdAt": "2025-03-29T15:32:47.632Z",
+      "updatedAt": "2025-03-30T19:18:52.803Z",
+      "__v": 0
+    },
+    {
+      "_id": "67e817e97ea24c04ee66ae60",
+      "name": "Sign Document",
+      "filename": "template_1743263700647.docx",
+      "companyId": null,
+      "emailTemplate": "67e9245fa9dd72fa90df322d",
+      "isActive": true,
+      "isSignature": true,
+      "description": "This is testing of the Sign Document",
+      "fields": [
+        {
+          "name": "contract_date",
+          "placeholder": "",
+          "inputType": "date"
+        },
+        {
+          "name": "company_name",
+          "placeholder": "",
+          "inputType": "text"
+        },
+        {
+          "name": "client_name",
+          "placeholder": "",
+          "inputType": "text"
+        },
+        {
+          "name": "project_name",
+          "placeholder": "",
+          "inputType": "text"
+        },
+        {
+          "name": "project_details",
+          "placeholder": "",
+          "inputType": "text"
+        },
+        {
+          "name": "%sign",
+          "placeholder": "",
+          "inputType": "file"
+        },
+        {
+          "name": "sign_date",
+          "placeholder": "",
+          "inputType": "date"
+        }
+      ],
+      "deleted": false,
+      "createdAt": "2025-03-29T15:55:21.675Z",
+      "updatedAt": "2025-03-30T19:18:41.340Z",
+      "__v": 1
+    },
+    {
+      "_id": "67e8229ca72d0801f7b58d56",
+      "name": "asd",
+      "filename": "template_1743266453603.docx",
+      "companyId": null,
+      "emailTemplate": "67e9245fa9dd72fa90df322d",
+      "isActive": true,
+      "isSignature": false,
+      "description": "asd",
+      "fields": [
+        {
+          "name": "name",
+          "placeholder": "",
+          "inputType": "text"
+        },
+        {
+          "name": "name5",
+          "placeholder": "",
+          "inputType": "text"
+        }
+      ],
+      "deleted": false,
+      "createdAt": "2025-03-29T16:41:00.563Z",
+      "updatedAt": "2025-03-30T19:18:34.757Z",
+      "__v": 0
+    },
+    {
+      "_id": "67e8e8f2690472beb0ce18d7",
+      "name": "Fire",
+      "filename": "template_1743317225757.docx",
+      "companyId": "67c05d1b8fe2f7ebfbe593ae",
+      "emailTemplate": "67e9245fa9dd72fa90df322d",
+      "isActive": true,
+      "isSignature": false,
+      "description": "Employee Fire",
+      "fields": [
+        {
+          "name": "termination_date",
+          "placeholder": "",
+          "inputType": "date"
+        },
+        {
+          "name": "employer_name",
+          "placeholder": "",
+          "inputType": "text"
+        },
+        {
+          "name": "employer_address",
+          "placeholder": "",
+          "inputType": "text"
+        },
+        {
+          "name": "employee_name",
+          "placeholder": "",
+          "inputType": "text"
+        },
+        {
+          "name": "employee_address",
+          "placeholder": "",
+          "inputType": "text"
+        }
+      ],
+      "deleted": false,
+      "createdAt": "2025-03-30T06:47:14.987Z",
+      "updatedAt": "2025-03-30T20:24:05.430Z",
+      "__v": 0
+    },
+    {
+      "_id": "67e945e2a1d109d761d1dc9e",
+      "name": "cgh",
+      "filename": "template_1743340922977.docx",
+      "companyId": "67c05d1b8fe2f7ebfbe593ae",
+      "emailTemplate": "67e9245fa9dd72fa90df322d",
+      "isActive": true,
+      "isSignature": false,
+      "description": "cgh",
+      "fields": [
+        {
+          "name": "date",
+          "placeholder": "",
+          "inputType": "text"
+        },
+        {
+          "name": "party1_name",
+          "placeholder": "",
+          "inputType": "text"
+        },
+        {
+          "name": "party1_address",
+          "placeholder": "",
+          "inputType": "text"
+        },
+        {
+          "name": "party2_name",
+          "placeholder": "",
+          "inputType": "text"
+        },
+        {
+          "name": "party2_address",
+          "placeholder": "",
+          "inputType": "text"
+        },
+        {
+          "name": "payment_amount",
+          "placeholder": "",
+          "inputType": "text"
+        },
+        {
+          "name": "start_date",
+          "placeholder": "",
+          "inputType": "text"
+        },
+        {
+          "name": "end_date",
+          "placeholder": "",
+          "inputType": "text"
+        }
+      ],
+      "deleted": false,
+      "createdAt": "2025-03-30T13:23:46.141Z",
+      "updatedAt": "2025-03-30T13:23:46.141Z",
+      "__v": 0
+    },
+    {
+      "_id": "67e99ca135cfad8b93f64e71",
+      "name": "asdasd",
+      "filename": "template_1743363214022.docx",
+      "companyId": "67ce8d7f2fdef1a11e6803fb",
+      "emailTemplate": "67e999e9a136dcda714519aa",
+      "isActive": true,
+      "isSignature": true,
+      "description": "asdasdasd",
+      "fields": [
+        {
+          "name": "contract_date",
+          "placeholder": "",
+          "inputType": "date"
+        },
+        {
+          "name": "company_name",
+          "placeholder": "",
+          "inputType": "text"
+        },
+        {
+          "name": "client_name",
+          "placeholder": "",
+          "inputType": "text"
+        },
+        {
+          "name": "project_name",
+          "placeholder": "",
+          "inputType": "text"
+        },
+        {
+          "name": "project_details",
+          "placeholder": "",
+          "inputType": "textarea"
+        },
+        {
+          "name": "%sign",
+          "placeholder": "",
+          "inputType": "file"
+        },
+        {
+          "name": "sign_date",
+          "placeholder": "",
+          "inputType": "date"
+        }
+      ],
+      "deleted": false,
+      "createdAt": "2025`-03-30T19:33:53.409Z",
+      "updatedAt": "2025-03-30T20:27:38.026Z",
+      "__v": 0
+    }
+  ],
+  "users": [
+    {
+      "_id": "67c049e75cfeeb1b91cf31f7",
+      "name": "Admin User",
+      "email": "admin@template.com",
+      "password": "$2b$10$DHl4y9Sp1beZbdpNNA0r8OqFoyGyk9VdbygCh4OyHXc/0xcKk.CAy",
+      "role": "admin",
+      "permissions": [
+        "67bf5ea0fb8a2e9f773050d4",
+        "67bf5ea0fb8a2e9f773050d5",
+        "67bf5ea0fb8a2e9f773050d6",
+        "67bf5ea0fb8a2e9f773050d7",
+        "67bf5ea0fb8a2e9f773050d8",
+        "67bf5ea0fb8a2e9f773050d9",
+        "67bf5ea0fb8a2e9f773050da",
+        "67bf5ea0fb8a2e9f773050db",
+        "67bf5ea0fb8a2e9f773050dc",
+        "67bf5ea0fb8a2e9f773050de",
+        "67bf5ea0fb8a2e9f773050df",
+        "67bf5ea0fb8a2e9f773050e0",
+        "67bf5ea0fb8a2e9f773050e1",
+        "67bf5ea0fb8a2e9f773050e6",
+        "67bf5ea0fb8a2e9f773050e7",
+        "67bf5ea0fb8a2e9f773050e8",
+        "67bf5ea0fb8a2e9f773050e9",
+        "67bf5ea0fb8a2e9f773050ea",
+        "67bf5ea0fb8a2e9f773050eb",
+        "67c056c6bb3b8c72cc725c50",
+        "67c056c7bb3b8c72cc725c53",
+        "67c056c7bb3b8c72cc725c56",
+        "67c0c605d4c82d5aa4b5af25",
+        "67c5f89f486775eb2742c6a4",
+        "67e3ebe4abe632ac789fef63",
+        "67ea8b15e3da734f0ee0d490"
+      ],
+      "deleted": false,
+      "createdAt": "2025-02-27T11:17:59.259Z",
+      "updatedAt": "2025-03-31T12:31:17.259Z",
+      "__v": 5,
+      "phone": "9925315511"
+    },
+    {
+      "_id": "67c060d98882176e55b81dcb",
+      "name": "John Doe",
+      "email": "john.doe@example.com",
+      "password": "$2b$10$qNFKVZZMnTeoaKpQpx7V2uYjOiJFn/X6a8tpist15WenANt4LLueC",
+      "role": "company",
+      "permissions": [
+        "67bf5ea0fb8a2e9f773050d8",
+        "67bf5ea0fb8a2e9f773050de",
+        "67bf5ea0fb8a2e9f773050e6",
+        "67bf5ea0fb8a2e9f773050ea",
+        "67bf5ea0fb8a2e9f773050d9",
+        "67bf5ea0fb8a2e9f773050da",
+        "67bf5ea0fb8a2e9f773050db",
+        "67bf5ea0fb8a2e9f773050df",
+        "67bf5ea0fb8a2e9f773050e0",
+        "67bf5ea0fb8a2e9f773050e1",
+        "67bf5ea0fb8a2e9f773050e7",
+        "67bf5ea0fb8a2e9f773050e8",
+        "67c0c605d4c82d5aa4b5af25",
+        "67bf5ea0fb8a2e9f773050e9",
+        "67c056c7bb3b8c72cc725c53"
+      ],
+      "companyId": "67c028b96bbe6df6ff620c5e",
+      "deleted": false,
+      "createdAt": "2025-02-27T12:55:53.215Z",
+      "updatedAt": "2025-03-03T20:48:29.328Z",
+      "__v": 10,
+      "phone": "9876543210"
+    },
+    {
+      "_id": "67c060d98882176e55b81dcd",
+      "name": "Jane Smith",
+      "email": "jane.smith@example.com",
+      "password": "12345678$2b$10$iZbz9yuSMOjOTbUBzoDT6O.9rJAd7Xi0lruNGKuYM9m4TLw5bWZgO",
+      "role": "employee",
+      "permissions": [
+        "67bf5ea0fb8a2e9f773050d8",
+        "67bf5ea0fb8a2e9f773050de",
+        "67bf5ea0fb8a2e9f773050e6",
+        "67bf5ea0fb8a2e9f773050ea",
+        "67bf5ea0fb8a2e9f773050d9",
+        "67bf5ea0fb8a2e9f773050da",
+        "67bf5ea0fb8a2e9f773050db",
+        "67bf5ea0fb8a2e9f773050df",
+        "67bf5ea0fb8a2e9f773050e0",
+        "67bf5ea0fb8a2e9f773050e1",
+        "67bf5ea0fb8a2e9f773050e7",
+        "67bf5ea0fb8a2e9f773050e8",
+        "67c0c605d4c82d5aa4b5af25",
+        "67bf5ea0fb8a2e9f773050e9",
+        "67c056c7bb3b8c72cc725c53"
+      ],
+      "companyId": "67c028b96bbe6df6ff620c5e",
+      "deleted": false,
+      "createdAt": "2025-02-27T12:55:53.233Z",
+      "updatedAt": "2025-03-03T20:48:29.337Z",
+      "__v": 1
+    },
+    {
+      "_id": "67c060d98882176e55b81dcf",
+      "name": "Michael Brown",
+      "email": "michael.brown@example.com",
+      "password": "$2b$10$iZbz9yuSMOjOTbUBzoDT6O.9rJAd7Xi0lruNGKuYM9m4TLw5bWZgO",
+      "role": "employee",
+      "permissions": [
+        "67bf5ea0fb8a2e9f773050d8",
+        "67bf5ea0fb8a2e9f773050de",
+        "67bf5ea0fb8a2e9f773050e6",
+        "67bf5ea0fb8a2e9f773050ea",
+        "67bf5ea0fb8a2e9f773050d9",
+        "67bf5ea0fb8a2e9f773050da",
+        "67bf5ea0fb8a2e9f773050db",
+        "67bf5ea0fb8a2e9f773050df",
+        "67bf5ea0fb8a2e9f773050e0",
+        "67bf5ea0fb8a2e9f773050e1",
+        "67bf5ea0fb8a2e9f773050e7",
+        "67bf5ea0fb8a2e9f773050e8",
+        "67c0c605d4c82d5aa4b5af25",
+        "67bf5ea0fb8a2e9f773050e9",
+        "67c056c7bb3b8c72cc725c53"
+      ],
+      "companyId": "67c028b96bbe6df6ff620c5e",
+      "deleted": false,
+      "createdAt": "2025-02-27T12:55:53.236Z",
+      "updatedAt": "2025-03-03T20:48:29.339Z",
+      "__v": 3
+    },
+    {
+      "_id": "67c060d98882176e55b81dd1",
+      "name": "Emily Johnson",
+      "email": "emily.johnson@example.com",
+      "password": "$2b$10$iZbz9yuSMOjOTbUBzoDT6O.9rJAd7Xi0lruNGKuYM9m4TLw5bWZgO",
+      "role": "employee",
+      "permissions": [
+        "67bf5ea0fb8a2e9f773050d8",
+        "67bf5ea0fb8a2e9f773050de",
+        "67bf5ea0fb8a2e9f773050e6",
+        "67bf5ea0fb8a2e9f773050ea",
+        "67bf5ea0fb8a2e9f773050d9",
+        "67bf5ea0fb8a2e9f773050da",
+        "67bf5ea0fb8a2e9f773050db",
+        "67bf5ea0fb8a2e9f773050df",
+        "67bf5ea0fb8a2e9f773050e0",
+        "67bf5ea0fb8a2e9f773050e1",
+        "67bf5ea0fb8a2e9f773050e7",
+        "67bf5ea0fb8a2e9f773050e8",
+        "67c0c605d4c82d5aa4b5af25",
+        "67bf5ea0fb8a2e9f773050e9",
+        "67c056c7bb3b8c72cc725c53"
+      ],
+      "companyId": "67c028b96bbe6df6ff620c5e",
+      "deleted": false,
+      "createdAt": "2025-02-27T12:55:53.238Z",
+      "updatedAt": "2025-03-03T20:48:29.341Z",
+      "__v": 3
+    },
+    {
+      "_id": "67c060d98882176e55b81dd3",
+      "name": "David Williams",
+      "email": "david.williams@example.com",
+      "password": "$2b$10$iZbz9yuSMOjOTbUBzoDT6O.9rJAd7Xi0lruNGKuYM9m4TLw5bWZgO",
+      "role": "employee",
+      "permissions": [
+        "67bf5ea0fb8a2e9f773050d8",
+        "67bf5ea0fb8a2e9f773050de",
+        "67bf5ea0fb8a2e9f773050e6",
+        "67bf5ea0fb8a2e9f773050ea",
+        "67bf5ea0fb8a2e9f773050d9",
+        "67bf5ea0fb8a2e9f773050da",
+        "67bf5ea0fb8a2e9f773050db",
+        "67bf5ea0fb8a2e9f773050df",
+        "67bf5ea0fb8a2e9f773050e0",
+        "67bf5ea0fb8a2e9f773050e1",
+        "67bf5ea0fb8a2e9f773050e7",
+        "67bf5ea0fb8a2e9f773050e8",
+        "67c0c605d4c82d5aa4b5af25",
+        "67bf5ea0fb8a2e9f773050e9",
+        "67c056c7bb3b8c72cc725c53"
+      ],
+      "companyId": "67c028b96bbe6df6ff620c5e",
+      "deleted": false,
+      "createdAt": "2025-02-27T12:55:53.240Z",
+      "updatedAt": "2025-03-03T20:48:29.342Z",
+      "__v": 1
+    },
+    {
+      "_id": "67c060d98882176e55b81dd5",
+      "name": "Sarah Lee",
+      "email": "sarah.lee@example.com",
+      "password": "$2b$10$iZbz9yuSMOjOTbUBzoDT6O.9rJAd7Xi0lruNGKuYM9m4TLw5bWZgO",
+      "role": "employee",
+      "permissions": [
+        "67bf5ea0fb8a2e9f773050d8",
+        "67bf5ea0fb8a2e9f773050de",
+        "67bf5ea0fb8a2e9f773050e6",
+        "67bf5ea0fb8a2e9f773050ea",
+        "67bf5ea0fb8a2e9f773050d9",
+        "67bf5ea0fb8a2e9f773050da",
+        "67bf5ea0fb8a2e9f773050db",
+        "67bf5ea0fb8a2e9f773050df",
+        "67bf5ea0fb8a2e9f773050e0",
+        "67bf5ea0fb8a2e9f773050e1",
+        "67bf5ea0fb8a2e9f773050e7",
+        "67bf5ea0fb8a2e9f773050e8",
+        "67c0c605d4c82d5aa4b5af25",
+        "67bf5ea0fb8a2e9f773050e9",
+        "67c056c7bb3b8c72cc725c53"
+      ],
+      "companyId": "67c05d1b8fe2f7ebfbe593ae",
+      "deleted": false,
+      "createdAt": "2025-02-27T12:55:53.243Z",
+      "updatedAt": "2025-03-03T20:48:29.344Z",
+      "__v": 7
+    },
+    {
+      "_id": "67c060d98882176e55b81dd7",
+      "name": "Matthew Davis",
+      "email": "matthew.davis@example.com",
+      "password": "$2b$10$iZbz9yuSMOjOTbUBzoDT6O.9rJAd7Xi0lruNGKuYM9m4TLw5bWZgO",
+      "role": "employee",
+      "permissions": [
+        "67bf5ea0fb8a2e9f773050d8",
+        "67bf5ea0fb8a2e9f773050de",
+        "67bf5ea0fb8a2e9f773050e6",
+        "67bf5ea0fb8a2e9f773050ea",
+        "67bf5ea0fb8a2e9f773050d9",
+        "67bf5ea0fb8a2e9f773050da",
+        "67bf5ea0fb8a2e9f773050db",
+        "67bf5ea0fb8a2e9f773050df",
+        "67bf5ea0fb8a2e9f773050e0",
+        "67bf5ea0fb8a2e9f773050e1",
+        "67bf5ea0fb8a2e9f773050e7",
+        "67bf5ea0fb8a2e9f773050e8",
+        "67c0c605d4c82d5aa4b5af25",
+        "67bf5ea0fb8a2e9f773050e9",
+        "67c056c7bb3b8c72cc725c53"
+      ],
+      "companyId": "67c05d1b8fe2f7ebfbe593ae",
+      "deleted": false,
+      "createdAt": "2025-02-27T12:55:53.244Z",
+      "updatedAt": "2025-03-03T20:48:29.346Z",
+      "__v": 1
+    },
+    {
+      "_id": "67c060d98882176e55b81dd9",
+      "name": "Sophia Miller",
+      "email": "sophia.miller@example.com",
+      "password": "$2b$10$iZbz9yuSMOjOTbUBzoDT6O.9rJAd7Xi0lruNGKuYM9m4TLw5bWZgO",
+      "role": "company",
+      "permissions": [
+        "67bf5ea0fb8a2e9f773050d8",
+        "67bf5ea0fb8a2e9f773050de",
+        "67bf5ea0fb8a2e9f773050ea",
+        "67bf5ea0fb8a2e9f773050d9",
+        "67bf5ea0fb8a2e9f773050da",
+        "67bf5ea0fb8a2e9f773050db",
+        "67bf5ea0fb8a2e9f773050df",
+        "67bf5ea0fb8a2e9f773050e0",
+        "67bf5ea0fb8a2e9f773050e1",
+        "67bf5ea0fb8a2e9f773050e7",
+        "67bf5ea0fb8a2e9f773050e8",
+        "67c0c605d4c82d5aa4b5af25",
+        "67bf5ea0fb8a2e9f773050e9",
+        "67c056c7bb3b8c72cc725c53",
+        "67bf5ea0fb8a2e9f773050dc",
+        "67e3ebe4abe632ac789fef63",
+        "67bf5ea0fb8a2e9f773050e6"
+      ],
+      "companyId": "67c05d1b8fe2f7ebfbe593ae",
+      "deleted": false,
+      "createdAt": "2025-02-27T12:55:53.246Z",
+      "updatedAt": "2025-03-31T13:00:36.433Z",
+      "__v": 52,
+      "phone": "8487015511"
+    },
+    {
+      "_id": "67c060d98882176e55b81ddb",
+      "name": "James Wilson",
+      "email": "james.wilson@example.com",
+      "password": "$2b$10$iZbz9yuSMOjOTbUBzoDT6O.9rJAd7Xi0lruNGKuYM9m4TLw5bWZgO",
+      "role": "company",
+      "permissions": [
+        "67bf5ea0fb8a2e9f773050d8",
+        "67bf5ea0fb8a2e9f773050de",
+        "67bf5ea0fb8a2e9f773050e6",
+        "67bf5ea0fb8a2e9f773050ea",
+        "67bf5ea0fb8a2e9f773050d9",
+        "67bf5ea0fb8a2e9f773050da",
+        "67bf5ea0fb8a2e9f773050db",
+        "67bf5ea0fb8a2e9f773050df",
+        "67bf5ea0fb8a2e9f773050e0",
+        "67bf5ea0fb8a2e9f773050e1",
+        "67bf5ea0fb8a2e9f773050e7",
+        "67bf5ea0fb8a2e9f773050e8",
+        "67c0c605d4c82d5aa4b5af25",
+        "67bf5ea0fb8a2e9f773050e9",
+        "67c056c7bb3b8c72cc725c53",
+        "67bf5ea0fb8a2e9f773050eb",
+        "67c056c6bb3b8c72cc725c50",
+        "67c056c7bb3b8c72cc725c56",
+        "67e3ebe4abe632ac789fef63",
+        "67bf5ea0fb8a2e9f773050dc"
+      ],
+      "companyId": "67cccf52bc2fbc2b8eac2acd",
+      "deleted": false,
+      "createdAt": "2025-02-27T12:55:53.247Z",
+      "updatedAt": "2025-03-30T18:25:41.363Z",
+      "__v": 4
+    },
+    {
+      "_id": "67c060d98882176e55b81ddd",
+      "name": "Olivia Moore",
+      "email": "olivia.moore@example.com",
+      "password": "$2b$10$iZbz9yuSMOjOTbUBzoDT6O.9rJAd7Xi0lruNGKuYM9m4TLw5bWZgO",
+      "role": "employee",
+      "permissions": [
+        "67bf5ea0fb8a2e9f773050d8",
+        "67bf5ea0fb8a2e9f773050de",
+        "67bf5ea0fb8a2e9f773050e6",
+        "67bf5ea0fb8a2e9f773050ea",
+        "67bf5ea0fb8a2e9f773050d9",
+        "67bf5ea0fb8a2e9f773050da",
+        "67bf5ea0fb8a2e9f773050db",
+        "67bf5ea0fb8a2e9f773050df",
+        "67bf5ea0fb8a2e9f773050e0",
+        "67bf5ea0fb8a2e9f773050e1",
+        "67bf5ea0fb8a2e9f773050e7",
+        "67bf5ea0fb8a2e9f773050e8",
+        "67c0c605d4c82d5aa4b5af25",
+        "67bf5ea0fb8a2e9f773050e9",
+        "67c056c7bb3b8c72cc725c53"
+      ],
+      "companyId": "67c05d1b8fe2f7ebfbe593ae",
+      "deleted": false,
+      "createdAt": "2025-02-27T12:55:53.249Z",
+      "updatedAt": "2025-03-03T20:48:29.354Z",
+      "__v": 1
+    },
+    {
+      "_id": "67e98f5200f5b72160e7bc50",
+      "name": "Citrix",
+      "email": "citrix@gmail.com",
+      "password": "$2b$10$phbdlrKIDQCidE8QzIffJuuVuOxkLyoWyKPhJXLI7Hp6AzqVMFSGi",
+      "role": "company",
+      "permissions": [
+        "67bf5ea0fb8a2e9f773050d8",
+        "67bf5ea0fb8a2e9f773050ea",
+        "67bf5ea0fb8a2e9f773050e0",
+        "67bf5ea0fb8a2e9f773050e1",
+        "67bf5ea0fb8a2e9f773050e7",
+        "67bf5ea0fb8a2e9f773050e8",
+        "67c0c605d4c82d5aa4b5af25",
+        "67bf5ea0fb8a2e9f773050e9",
+        "67c056c7bb3b8c72cc725c53",
+        "67bf5ea0fb8a2e9f773050eb",
+        "67c056c7bb3b8c72cc725c56",
+        "67e3ebe4abe632ac789fef63",
+        "67bf5ea0fb8a2e9f773050d9",
+        "67bf5ea0fb8a2e9f773050dc",
+        "67bf5ea0fb8a2e9f773050da",
+        "67bf5ea0fb8a2e9f773050db",
+        "67bf5ea0fb8a2e9f773050de",
+        "67bf5ea0fb8a2e9f773050df",
+        "67bf5ea0fb8a2e9f773050e6"
+      ],
+      "companyId": "67ce8d7f2fdef1a11e6803fb",
+      "deleted": false,
+      "createdAt": "2025-03-30T18:37:06.711Z",
+      "updatedAt": "2025-03-30T20:10:59.803Z",
+      "__v": 7
+    },
+    {
+      "_id": "67ea7e39bcc8aba5e7c66c3e",
+      "name": "TCS",
+      "email": "tcs@gmail.com",
+      "password": "$2b$10$qwCWBlRrGE0mZLmZszd5fu1JUHXOLtQPV5G3eTMZZHfJilZzhv0zK",
+      "role": "company",
+      "permissions": [
+        "67bf5ea0fb8a2e9f773050de",
+        "67bf5ea0fb8a2e9f773050ea",
+        "67c056c7bb3b8c72cc725c53",
+        "67bf5ea0fb8a2e9f773050df",
+        "67c0c605d4c82d5aa4b5af25",
+        "67bf5ea0fb8a2e9f773050e7",
+        "67bf5ea0fb8a2e9f773050e9",
+        "67bf5ea0fb8a2e9f773050e1",
+        "67bf5ea0fb8a2e9f773050e0",
+        "67bf5ea0fb8a2e9f773050e8",
+        "67e3ebe4abe632ac789fef63",
+        "67bf5ea0fb8a2e9f773050e6"
+      ],
+      "companyId": "67ea7dbe90a82d00d0277cc9",
+      "deleted": false,
+      "createdAt": "2025-03-31T11:36:25.350Z",
+      "updatedAt": "2025-03-31T12:58:48.135Z",
+      "__v": 3
+    }
+  ],
+  "inboxes": [
+    {
+      "_id": "67e8363816ab47e798886e31",
+      "emailTemplateId": "67bcd7ceeb397cf708431711",
+      "documentTemplateId": "pdf_1743271461576_1743271476323.pdf",
+      "documentLink": "https://res.cloudinary.com/disqg7oeu/raw/upload/v1743271479/pdfs/pdf_1743271461576_1743271476323.pdf",
+      "sentTimestamp": "2025-03-29T18:04:40.370Z",
+      "companyId": null,
+      "isSigned": false,
+      "status": "sent",
+      "signedTimestamp": null,
+      "signingUserId": null,
+      "deleted": false,
+      "createdAt": "2025-03-29T18:04:40.381Z",
+      "updatedAt": "2025-03-29T18:11:17.614Z",
+      "__v": 0,
+      "body": "<p>This is the <span style=\"font-family: 'arial black', sans-serif;\">Testing</span> and the testing is done.</p>",
+      "recipientEmail": "202412125@daiict.ac.in",
+      "senderEmail": "abhi.andani5511@gmail.com",
+      "subject": "Testing Email Template"
+    },
+    {
+      "_id": "67e8394b16ab47e798886ef3",
+      "emailTemplateId": "67bcd7ceeb397cf708431711",
+      "documentTemplateId": "pdf_1743272243402_1743272264215.pdf",
+      "documentLink": "https://res.cloudinary.com/disqg7oeu/raw/upload/v1743272267/pdfs/pdf_1743272243402_1743272264215.pdf",
+      "sentTimestamp": "2025-03-29T18:17:47.419Z",
+      "companyId": null,
+      "isSigned": false,
+      "status": "sent",
+      "signedTimestamp": null,
+      "signingUserId": null,
+      "deleted": false,
+      "createdAt": "2025-03-29T18:17:47.422Z",
+      "updatedAt": "2025-03-29T18:18:16.719Z",
+      "__v": 0,
+      "body": "<p>This is the <span style=\"font-family: 'arial black', sans-serif;\">Testing</span> and the testing is done.</p>",
+      "recipientEmail": "202412125@daiict.ac.in",
+      "senderEmail": "abhi.andani5511@gmail.com",
+      "subject": "Testing Email Template"
+    },
+    {
+      "_id": "67e8dc40f11630673ea10d4d",
+      "emailTemplateId": "67bcd7ceeb397cf708431711",
+      "documentTemplateId": "pdf_1743313974316_1743313981506.pdf",
+      "documentLink": "https://res.cloudinary.com/disqg7oeu/raw/upload/v1743313983/pdfs/pdf_1743313974316_1743313981506.pdf",
+      "sentTimestamp": "2025-03-30T05:53:04.139Z",
+      "companyId": null,
+      "isSigned": false,
+      "status": "sent",
+      "signedTimestamp": null,
+      "signingUserId": null,
+      "deleted": false,
+      "createdAt": "2025-03-30T05:53:04.191Z",
+      "updatedAt": "2025-03-30T05:53:38.408Z",
+      "__v": 0,
+      "body": "<p>This is the <span style=\"font-family: 'arial black', sans-serif;\">Testing</span> and the testing is done.</p>",
+      "recipientEmail": "admin@template.com",
+      "senderEmail": "sophia.miller@example.com",
+      "subject": "Testing Email Template"
+    },
+    {
+      "_id": "67e99acb35cfad8b93f64e4f",
+      "emailTemplateId": "67e9245fa9dd72fa90df322d",
+      "documentTemplateId": "pdf_1743362753051_1743362761625.pdf",
+      "documentLink": "https://res.cloudinary.com/disqg7oeu/raw/upload/v1743362763/pdfs/pdf_1743362753051_1743362761625.pdf",
+      "sentTimestamp": "2025-03-30T19:26:03.926Z",
+      "companyId": null,
+      "isSigned": false,
+      "status": "sent",
+      "signedTimestamp": null,
+      "signingUserId": null,
+      "deleted": false,
+      "createdAt": "2025-03-30T19:26:03.942Z",
+      "updatedAt": "2025-03-30T19:26:22.429Z",
+      "__v": 0,
+      "body": "<p>sdasdd</p>",
+      "recipientEmail": "abhiandani25511@gmail.com",
+      "senderEmail": "abhi.andani5511@gmail.com",
+      "subject": "email"
+    },
+    {
+      "_id": "67e99d440d6fdfa0764723f3",
+      "emailTemplateId": "67e999e9a136dcda714519aa",
+      "documentTemplateId": "pdf_1743363381281_1743363392814.pdf",
+      "documentLink": "https://res.cloudinary.com/disqg7oeu/raw/upload/v1743363395/pdfs/pdf_1743363381281_1743363392814.pdf",
+      "sentTimestamp": "2025-03-30T19:36:36.098Z",
+      "companyId": "67ce8d7f2fdef1a11e6803fb",
+      "isSigned": false,
+      "status": "sent",
+      "signedTimestamp": null,
+      "signingUserId": null,
+      "deleted": false,
+      "createdAt": "2025-03-30T19:36:36.112Z",
+      "updatedAt": "2025-03-30T19:43:22.637Z",
+      "__v": 0,
+      "body": "<p>admin email template</p>",
+      "recipientEmail": "admin@template.com",
+      "senderEmail": "citrix@gmail.com",
+      "subject": "Email Subject"
+    },
+    {
+      "_id": "67e9a0e288f367dc4178f3af",
+      "emailTemplateId": "67e9245fa9dd72fa90df322d",
+      "documentTemplateId": "pdf_1743364313247_1743364319899.pdf",
+      "documentLink": "https://res.cloudinary.com/disqg7oeu/raw/upload/v1743364321/pdfs/pdf_1743364313247_1743364319899.pdf",
+      "sentTimestamp": "2025-03-30T19:52:02.101Z",
+      "companyId": "67ce8d7f2fdef1a11e6803fb",
+      "isSigned": false,
+      "status": "sent",
+      "signedTimestamp": null,
+      "signingUserId": null,
+      "deleted": false,
+      "createdAt": "2025-03-30T19:52:02.109Z",
+      "updatedAt": "2025-03-30T19:52:39.805Z",
+      "__v": 0,
+      "body": "<p>citrix@gmail.comcitrix@gmail.comcitrix@gmail.comcitrix@gmail.com</p>",
+      "recipientEmail": "admin@template.com",
+      "senderEmail": "citrix@gmail.com",
+      "subject": "email"
+    },
+    {
+      "_id": "67ea7613cb725e8f5defbbe3",
+      "emailTemplateId": "67e9245fa9dd72fa90df322d",
+      "documentTemplateId": "pdf_1743418890808_1743418897470.pdf",
+      "documentLink": "https://res.cloudinary.com/disqg7oeu/raw/upload/v1743418898/pdfs/pdf_1743418890808_1743418897470.pdf",
+      "sentTimestamp": "2025-03-31T11:01:39.217Z",
+      "isSigned": false,
+      "status": "sent",
+      "signedTimestamp": null,
+      "signingUserId": null,
+      "deleted": false,
+      "createdAt": "2025-03-31T11:01:39.220Z",
+      "updatedAt": "2025-03-31T11:01:58.866Z",
+      "__v": 0,
+      "body": "<p>sdasdd</p>",
+      "recipientEmail": "abhiandani25511@gmail.com",
+      "senderEmail": "abhi.andani5511@gmail.com",
+      "subject": "email"
+    }
+  ],
+  "plans": [
+    {
+      "_id": "67ccb4ad67c866c8e699aa06",
+      "name": "Basic",
+      "price": "₹299",
+      "period": "per month",
+      "description": "Perfect for small companies and startups",
+      "features": [
+        {
+          "text": "1 Active Dashboard",
+          "included": true,
+          "_id": "67ccb4ad67c866c8e699aa07"
+        },
+        {
+          "text": "Basic Components",
+          "included": true,
+          "_id": "67ccb4ad67c866c8e699aa08"
+        },
+        {
+          "text": "Limited Email Support",
+          "included": true,
+          "_id": "67ccb4ad67c866c8e699aa09"
+        },
+        {
+          "text": "Bulk Send",
+          "included": false,
+          "_id": "67ccb4ad67c866c8e699aa0a"
+        },
+        {
+          "text": "Custom Template",
+          "included": false,
+          "_id": "67ccb4ad67c866c8e699aa0b"
+        },
+        {
+          "text": "Priority Support",
+          "included": false,
+          "_id": "67ccb4ad67c866c8e699aa0c"
+        },
+        {
+          "text": "24/7 Support",
+          "included": false,
+          "_id": "67ccb4ad67c866c8e699aa0d"
+        }
+      ],
+      "buttonText": "Choose Plan",
+      "popular": false,
+      "__v": 0,
+      "activeDashboard": 1
+    },
+    {
+      "_id": "67ccb4ad67c866c8e699aa0e",
+      "name": "Professional",
+      "price": "₹599",
+      "period": "per month",
+      "description": "Ideal for growing companies",
+      "features": [
+        {
+          "text": "Basic Features",
+          "included": true,
+          "_id": "67ccb4ad67c866c8e699aa0f"
+        },
+        {
+          "text": "3 Active Dashboards",
+          "included": true,
+          "_id": "67ccb4ad67c866c8e699aa10"
+        },
+        {
+          "text": "Advanced Components",
+          "included": true,
+          "_id": "67ccb4ad67c866c8e699aa11"
+        },
+        {
+          "text": "Unlimited Email Support",
+          "included": true,
+          "_id": "67ccb4ad67c866c8e699aa12"
+        },
+        {
+          "text": "Custom Template",
+          "included": true,
+          "_id": "67ccb4ad67c866c8e699aa13"
+        },
+        {
+          "text": "Bulk Send",
+          "included": false,
+          "_id": "67ccb4ad67c866c8e699aa14"
+        },
+        {
+          "text": "Priority Support",
+          "included": false,
+          "_id": "67ccb4ad67c866c8e699aa15"
+        },
+        {
+          "text": "24/7 Support",
+          "included": false,
+          "_id": "67ccb4ad67c866c8e699aa16"
+        }
+      ],
+      "buttonText": "Choose Plan",
+      "popular": true,
+      "__v": 0,
+      "activeDashboard": 3
+    },
+    {
+      "_id": "67ccb4ad67c866c8e699aa17",
+      "name": "Enterprise",
+      "price": "₹899",
+      "period": "per month",
+      "description": "For large organizations and teams",
+      "features": [
+        {
+          "text": "Professional Features",
+          "included": true,
+          "_id": "67ccb4ad67c866c8e699aa18"
+        },
+        {
+          "text": "Unlimited Active Dashboards",
+          "included": true,
+          "_id": "67ccb4ad67c866c8e699aa19"
+        },
+        {
+          "text": "All Components",
+          "included": true,
+          "_id": "67ccb4ad67c866c8e699aa1a"
+        },
+        {
+          "text": "24/7 Support",
+          "included": true,
+          "_id": "67ccb4ad67c866c8e699aa1b"
+        },
+        {
+          "text": "Priority Support",
+          "included": true,
+          "_id": "67ccb4ad67c866c8e699aa1c"
+        }
+      ],
+      "buttonText": "Choose Plan",
+      "popular": false,
+      "__v": 0,
+      "activeDashboard": -1
+    }
+  ]
+}

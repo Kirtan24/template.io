@@ -1,0 +1,49 @@
+services:
+  # mongo:
+  #   image: mongo
+  #   container_name: mongo-container
+  #   ports:
+  #     - "27017:27017"
+  #   env_file:
+  #     - ./template-back/.env
+  #   volumes:
+  #     - mongo_data:/data/db
+  #   networks:
+  #     - template_net
+
+  # Backend
+  backend:
+    build:
+      context: ./template-back
+      dockerfile: Dockerfile
+    container_name: backend
+    restart: always
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./template-back/.env
+    networks:
+      - template_net
+
+  # Frontend
+  frontend:
+    build:
+      context: ./template-front
+      dockerfile: Dockerfile
+    container_name: frontend
+    restart: always
+    ports:
+      - "3000:80"
+    env_file:
+      - ./template-front/.env
+    depends_on:
+      - backend
+    networks:
+      - template_net
+
+# volumes:
+#   mongo_data:
+
+networks:
+  template_net:
+    driver: bridge

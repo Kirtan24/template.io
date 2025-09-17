@@ -9,41 +9,208 @@ const {
   uploadToCloudinary,
 } = require("../services/cloudinary.service");
 
+// Helper Functions - Extracted from main controller functions
+const validateUser = async (userId) => {
+  if (!userId) {
+    throw new Error("User id not found");
+  }
+
+  const user = await userModel.findById(userId);
+  if (!user) {
+    throw new Error("User not found");
+  }
+
+  return user;
+};
+
+const buildTemplateQuery = (userRole, companyId) => {
+  let query = { deleted: { $ne: true } };
+
+  if (userRole === "admin") {
+    query = {
+      companyId: null,
+      deleted: { $ne: true },
+    };
+  } else if (userRole === "company" || userRole === "employee") {
+    query = {
+      $or: [{ companyId: null }, { companyId: companyId }],
+      isActive: true,
+      deleted: { $ne: true },
+    };
+  } else {
+    throw new Error("Unauthorized user role");
+  }
+
+  return query;
+};
+
+const validateTemplateId = (templateId) => {
+  if (!templateId) {
+    throw new Error("Template id is required");
+  }
+};
+
+const validateFile = (file) => {
+  if (!file) {
+    throw new Error("File is required");
+  }
+};
+
+const validateFilename = (filename) => {
+  if (!filename) {
+    throw new Error("Filename is required");
+  }
+};
+
+const generateNewFilename = () => {
+  return `template_${Date.now()}.docx`;
+};
+
+const handleOldFileCleanup = async (oldFilename) => {
+  if (!oldFilename) return;
+
+  try {
+    const deleteResult = await deleteCloudFile(oldFilename, {
+      resourceType: "raw",
+      folder: "templates",
+    });
+
+    if (deleteResult.result !== "ok") {
+      throw new Error("Failed to delete old file from Cloudinary");
+    }
+  } catch (deleteError) {
+    console.error("Error deleting old file:", deleteError);
+    throw new Error("Error deleting old file from Cloudinary");
+  }
+};
+
+const processDocxFile = (fileBuffer) => {
+  const zip = new PizZip(fileBuffer);
+  const doc = new Docxtemplater(zip);
+  doc.compile();
+
+  return extractVariablesFromDocx(doc);
+};
+
+const extractVariablesFromDocx = (doc) => {
+  const text = doc.getFullText();
+  const variableSet = new Set();
+  const regex = /{(.*?)}/g;
+  let match;
+
+  while ((match = regex.exec(text)) !== null) {
+    variableSet.add(match[1]);
+  }
+
+  return Array.from(variableSet);
+};
+
+const formatFields = (fields) => {
+  return fields.map((field) => ({
+    name: field.name,
+    placeholder: field.placeholder,
+    inputType: field.inputType,
+    isSignature:
+      field.inputType === "file" ? field.isSignature || false : undefined,
+  }));
+};
+
+const createTemplateData = (templateInfo, cloudinaryResponse, companyId) => {
+  const { name, description, emailTemplate, isSignature } = templateInfo;
+  const filename = cloudinaryResponse.public_id.replace("templates/", "");
+
+  return {
+    name,
+    filename,
+    companyId,
+    description,
+    emailTemplate,
+    isSignature: isSignature === "true",
+    fileUrl: cloudinaryResponse.secure_url,
+  };
+};
+
+const handleDocxProcessingError = (error) => {
+  console.error("Error during DOCX processing:", error);
+
+  if (error.id === "multi_error") {
+    const errorMessages = error.properties.errors
+      .map((err) => err.message)
+      .join(", ");
+    throw new Error(
+      `The uploaded document has multiple issues with template tags: ${errorMessages}. Please upload a valid document.`
+    );
+  }
+
+  throw new Error("Internal Server Error");
+};
+
+const handleGeneralUploadError = (error) => {
+  console.error("General error:", error.message);
+
+  if (error.message.includes("Duplicate open tag")) {
+    throw new Error(
+      "The uploaded document contains an issue with template tags. Please upload a valid document."
+    );
+  }
+
+  throw error;
+};
+
+const findTemplateById = async (templateId) => {
+  const template = await templateModel
+    .findById(templateId)
+    .populate("emailTemplate")
+    .populate("companyId")
+    .select("-__v");
+
+  if (!template) {
+    throw new Error("Template not found");
+  }
+
+  return template;
+};
+
+const validateTemplateActive = (template) => {
+  if (!template.isActive) {
+    const error = new Error("Template is inactive");
+    error.statusCode = 203;
+    throw error;
+  }
+};
+
+const deleteFileFromCloudinary = async (filename) => {
+  const deleteResult = await deleteCloudFile(filename, {
+    resourceType: "raw",
+    folder: "templates",
+  });
+
+  if (deleteResult.result !== "ok") {
+    throw new Error("Failed to delete file from Cloudinary");
+  }
+};
+
+const validateTemplateForDeletion = (template) => {
+  if (!template) {
+    throw new Error("Template not found");
+  }
+
+  if (!template.filename) {
+    throw new Error("No file associated with this template");
+  }
+};
+
+const markTemplateAsDeleted = async (template) => {
+  template.deleted = true;
+  template.deletedAt = new Date();
+  await template.save();
+};
+
+// Main Controller Functions
 const getAllTemplates = async (req, res) => {
   try {
-    const userId = req.user.id;
-    if (!userId) {
-      return res
-        .status(404)
-        .json({ status: "error", message: "User id not found." });
-    }
-
-    const user = await userModel.findById(userId);
-    if (!user) {
-      return res
-        .status(404)
-        .json({ status: "error", message: "User not found." });
-    }
-
-    const companyId = user.companyId;
-    const userRole = user.role;
-
-    let query = { deleted: { $ne: true } };
-
-    if (userRole === "admin") {
-      query = { companyId: null };
-      query = { deleted: { $ne: true } };
-    } else if (userRole === "company" || userRole === "employee") {
-      query = {
-        $or: [{ companyId: null }, { companyId: companyId }],
-        isActive: true,
-        deleted: { $ne: true },
-      };
-    } else {
-      return res
-        .status(403)
-        .json({ status: "error", message: "Unauthorized user role." });
-    }
+    const user = await validateUser(req.user.id);
+    const query = buildTemplateQuery(user.role, user.companyId);
 
     const templates = await templateModel
       .find(query)
@@ -61,46 +228,39 @@ const getAllTemplates = async (req, res) => {
     });
   } catch (error) {
     console.error(error);
-    return res.status(500).json({
+    const statusCode = error.message.includes("Unauthorized")
+      ? 403
+      : error.message.includes("not found")
+      ? 404
+      : 500;
+
+    return res.status(statusCode).json({
       status: "error",
-      message: "Server Error while fetching templates",
+      message: error.message || "Server Error while fetching templates",
     });
   }
 };
 
 const getTemplateById = async (req, res) => {
-  const templateId = req.params.id;
-  if (!templateId) {
-    return res
-      .status(400)
-      .json({ status: "error", message: "template id is required" });
-  }
   try {
-    const template = await templateModel
-      .findById(templateId)
-      .populate("emailTemplate")
-      .populate("companyId")
-      .select("-__v");
-
-    if (!template) {
-      return res
-        .status(404)
-        .json({ status: "error", message: "Template not found" });
-    }
-
-    if (!template.isActive) {
-      return res.status(203).json({
-        status: "error",
-        message: "Template is inactive",
-      });
-    }
+    validateTemplateId(req.params.id);
+    const template = await findTemplateById(req.params.id);
+    validateTemplateActive(template);
 
     return res.json(template);
   } catch (error) {
     console.error(error);
-    return res.status(500).json({
+    const statusCode =
+      error.statusCode ||
+      (error.message.includes("not found")
+        ? 404
+        : error.message.includes("required")
+        ? 400
+        : 500);
+
+    return res.status(statusCode).json({
       status: "error",
-      message: "Server Error while fetching template by ID",
+      message: error.message || "Server Error while fetching template by ID",
     });
   }
 };
@@ -117,9 +277,10 @@ const updateTemplateStatus = async (req, res) => {
     );
 
     if (!template) {
-      return res
-        .status(404)
-        .json({ status: "error", message: "Template not found" });
+      return res.status(404).json({
+        status: "error",
+        message: "Template not found",
+      });
     }
 
     return res.status(200).json({
@@ -133,38 +294,24 @@ const updateTemplateStatus = async (req, res) => {
   }
 };
 
-const deleteFileFromCloudinary = async (req, res) => {
+const deleteFileFromCloudinaryController = async (req, res) => {
   try {
     const { filename } = req.params;
+    validateFilename(filename);
 
-    if (!filename) {
-      return res.status(400).json({
-        status: "error",
-        message: "Filename is required",
-      });
-    }
+    await deleteFileFromCloudinary(filename);
 
-    const deleteResult = await deleteCloudFile(filename, {
-      resourceType: "raw",
-      folder: "templates",
+    return res.status(200).json({
+      status: "success",
+      message: "Process Canceled!",
     });
-
-    if (deleteResult.result === "ok") {
-      return res.status(200).json({
-        status: "success",
-        message: "Process Canceled!",
-      });
-    } else {
-      return res.status(500).json({
-        status: "error",
-        message: "Failed to delete file from Cloudinary",
-      });
-    }
   } catch (error) {
     console.error("Error deleting file:", error);
-    return res.status(500).json({
+    const statusCode = error.message.includes("required") ? 400 : 500;
+
+    return res.status(statusCode).json({
       status: "error",
-      message: "Error deleting file from Cloudinary",
+      message: error.message || "Error deleting file from Cloudinary",
     });
   }
 };
@@ -175,71 +322,26 @@ const uploadTemplate = async (req, res) => {
       req.body;
     const file = req.file;
 
-    if (!file) {
-      return res.status(400).json({ message: "File is required" });
-    }
-
-    const userId = req.user.id;
-    const user = await userModel.findById(userId);
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
-
+    validateFile(file);
+    const user = await validateUser(req.user.id);
     const companyId = user.companyId || null;
-    const newFilename = `template_${Date.now()}.docx`;
+    const newFilename = generateNewFilename();
+
     console.log(newFilename);
 
-    // Handle deleting old file if it exists using the Cloudinary service.
-    if (oldFilename) {
-      try {
-        const deleteResult = await deleteCloudFile(oldFilename, {
-          resourceType: "raw",
-          folder: "templates",
-        });
-        if (deleteResult.result !== "ok") {
-          return res.status(500).json({
-            status: "error",
-            message: "Failed to delete old file from Cloudinary",
-          });
-        }
-      } catch (deleteError) {
-        console.error("Error deleting old file:", deleteError);
-        return res.status(500).json({
-          status: "error",
-          message: "Error deleting old file from Cloudinary",
-        });
-      }
-    }
-
-    // Upload new file to Cloudinary using service function.
+    await handleOldFileCleanup(oldFilename);
     const cloudinaryResponse = await uploadToCloudinary(
       file.buffer,
       newFilename
     );
-    const filename = cloudinaryResponse.public_id.replace("templates/", "");
 
     try {
-      const zip = new PizZip(file.buffer);
-      const doc = new Docxtemplater(zip);
-      doc.compile();
-      const text = doc.getFullText();
-      const variableSet = new Set();
-      const regex = /{(.*?)}/g;
-      let match;
-      while ((match = regex.exec(text)) !== null) {
-        variableSet.add(match[1]);
-      }
-      const uniqueVariables = Array.from(variableSet);
-
-      const templateData = {
-        name,
-        filename,
-        companyId,
-        description,
-        emailTemplate,
-        isSignature: isSignature === "true",
-        fileUrl: cloudinaryResponse.secure_url,
-      };
+      const uniqueVariables = processDocxFile(file.buffer);
+      const templateData = createTemplateData(
+        { name, description, emailTemplate, isSignature },
+        cloudinaryResponse,
+        companyId
+      );
 
       console.log(templateData);
 
@@ -250,33 +352,24 @@ const uploadTemplate = async (req, res) => {
         data: templateData,
         newFilename: newFilename,
       });
-    } catch (error) {
-      console.error("Error during DOCX processing:", error);
-      if (error.id === "multi_error") {
-        const errorMessages = error.properties.errors
-          .map((err) => err.message)
-          .join(", ");
-        return res.status(400).json({
-          status: "error",
-          message: `The uploaded document has multiple issues with template tags: ${errorMessages}. Please upload a valid document.`,
-        });
-      }
-      return res
-        .status(500)
-        .json({ message: "Internal Server Error", error: error.message });
+    } catch (docxError) {
+      handleDocxProcessingError(docxError);
     }
   } catch (error) {
-    console.error("General error:", error.message);
-    if (error.message.includes("Duplicate open tag")) {
-      return res.status(400).json({
-        status: "error",
-        message:
-          "The uploaded document contains an issue with template tags. Please upload a valid document.",
-      });
-    }
-    return res
-      .status(500)
-      .json({ message: error.message, error: error.message });
+    handleGeneralUploadError(error);
+    const statusCode =
+      error.message.includes("required") ||
+      error.message.includes("template tags")
+        ? 400
+        : error.message.includes("not found")
+        ? 404
+        : 500;
+
+    return res.status(statusCode).json({
+      status: "error",
+      message: error.message,
+      error: error.message,
+    });
   }
 };
 
@@ -293,14 +386,7 @@ const addTemplate = async (req, res) => {
 
   try {
     const formattedCompanyId = companyId === "null" ? null : companyId;
-
-    const formattedFields = fields.map((field) => ({
-      name: field.name,
-      placeholder: field.placeholder,
-      inputType: field.inputType,
-      isSignature:
-        field.inputType === "file" ? field.isSignature || false : undefined,
-    }));
+    const formattedFields = formatFields(fields);
 
     console.log(formattedFields);
 
@@ -313,8 +399,8 @@ const addTemplate = async (req, res) => {
       emailTemplate,
       companyId: formattedCompanyId,
     });
-    console.log(newTemplate);
 
+    console.log(newTemplate);
     await newTemplate.save();
 
     return res.status(201).json({
@@ -329,6 +415,40 @@ const addTemplate = async (req, res) => {
       message: "Internal Server Error while saving the template",
     });
   }
+};
+
+const updateExistingTemplate = async (template, updateData) => {
+  const { name, description, emailTemplate, fields, filename, isSignature } =
+    updateData;
+  const formattedFields = formatFields(fields);
+
+  template.name = name;
+  template.fields = formattedFields;
+  template.filename = filename;
+  template.isSignature = isSignature;
+  template.description = description;
+  template.emailTemplate = emailTemplate;
+
+  console.log(template);
+  await template.save();
+
+  return template;
+};
+
+const createNewTemplate = async (templateData) => {
+  const { name, filename, description, isSignature, fields } = templateData;
+  const formattedFields = formatFields(fields);
+
+  const template = new templateModel({
+    name,
+    filename,
+    description,
+    isSignature,
+    fields: formattedFields,
+  });
+
+  await template.save();
+  return template;
 };
 
 const updateTemplate = async (req, res) => {
@@ -347,7 +467,6 @@ const updateTemplate = async (req, res) => {
 
     if (id) {
       template = await templateModel.findById(id);
-
       if (!template) {
         return res.status(404).json({
           status: "error",
@@ -355,43 +474,9 @@ const updateTemplate = async (req, res) => {
         });
       }
 
-      // Format fields properly
-      const formattedFields = fields.map((field) => ({
-        name: field.name,
-        placeholder: field.placeholder,
-        inputType: field.inputType,
-        isSignature:
-          field.inputType === "file" ? field.isSignature || false : undefined,
-      }));
-
-      // Update template fields
-      template.name = name;
-      template.fields = formattedFields;
-      template.filename = filename;
-      template.isSignature = isSignature;
-      template.description = description;
-      template.emailTemplate = emailTemplate;
-      console.log(template);
-      await template.save();
+      template = await updateExistingTemplate(template, req.body);
     } else {
-      // Format fields for a new template
-      const formattedFields = fields.map((field) => ({
-        name: field.name,
-        placeholder: field.placeholder,
-        inputType: field.inputType,
-        isSignature:
-          field.inputType === "file" ? field.isSignature || false : undefined,
-      }));
-
-      template = new templateModel({
-        name,
-        filename,
-        description,
-        isSignature,
-        fields: formattedFields,
-      });
-
-      await template.save();
+      template = await createNewTemplate(req.body);
     }
 
     return res.status(200).json({
@@ -417,42 +502,13 @@ const updateTemplate = async (req, res) => {
 const deleteTemplate = async (req, res) => {
   try {
     const { id } = req.params;
-    if (!id) {
-      return res
-        .status(400)
-        .json({ status: "error", message: "Template ID is required" });
-    }
+    validateTemplateId(id);
 
     const template = await templateModel.findById(id);
+    validateTemplateForDeletion(template);
 
-    if (!template) {
-      return res.status(404).json({
-        status: "error",
-        message: "Template not found",
-      });
-    } else if (!template.filename) {
-      return res.status(400).json({
-        status: "error",
-        message: "No file associated with this template",
-      });
-    }
-
-    const filename = template.filename;
-    const deleteResult = await deleteCloudFile(filename, {
-      resourceType: "raw",
-      folder: "templates",
-    });
-
-    if (deleteResult.result !== "ok") {
-      return res.status(500).json({
-        status: "error",
-        message: "Failed to delete file from Cloudinary",
-      });
-    }
-
-    template.deleted = true;
-    template.deletedAt = new Date();
-    await template.save();
+    await deleteFileFromCloudinary(template.filename);
+    await markTemplateAsDeleted(template);
 
     return res.status(200).json({
       status: "success",
@@ -460,9 +516,15 @@ const deleteTemplate = async (req, res) => {
     });
   } catch (error) {
     console.error("Error deleting template and file:", error);
-    return res.status(500).json({
+    const statusCode = error.message.includes("required")
+      ? 400
+      : error.message.includes("not found")
+      ? 404
+      : 500;
+
+    return res.status(statusCode).json({
       status: "error",
-      message: "Server error while deleting template and file",
+      message: error.message || "Server error while deleting template and file",
     });
   }
 };
@@ -475,6 +537,6 @@ module.exports = {
   updateTemplate,
   deleteTemplate,
   updateTemplateStatus,
-  deleteFileFromCloudinary,
+  deleteFileFromCloudinary: deleteFileFromCloudinaryController,
   uploadToCloudinary,
 };

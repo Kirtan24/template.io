@@ -1,20 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import { setToken, setUserInfo, setUserPermissions } from '../../utils/localStorageHelper';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
-import config from '../../utils/helpers/helper';
-import { CONSTANT } from '../../utils/constant';
-import Spinner from '../Spinner/Spinner';
-import Title from '../Pages/Title';
+import React, { useEffect, useState } from "react";
+import {
+  setToken,
+  setUserInfo,
+  setUserPermissions,
+} from "../../utils/localStorageHelper";
+import { useLocation, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import config from "../../utils/helpers/helper";
+import { CONSTANT } from "../../utils/constant";
+import Spinner from "../Spinner/Spinner";
+import Title from "../Pages/Title";
 
 const { API_URL } = config;
 
 const Login = ({ title, setIsAuthenticated }) => {
-
   const [errors, setErrors] = useState({});
   const [passwordVisible, setPasswordVisible] = useState(false);
-  const [formData, setFormData] = useState({ email: '', password: '' });
+  const [formData, setFormData] = useState({ email: "", password: "" });
   const [rememberMe, setRememberMe] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -24,21 +27,30 @@ const Login = ({ title, setIsAuthenticated }) => {
     let isValid = true;
 
     if (!formData.email) {
-      setErrors((prevErrors) => ({ ...prevErrors, email: 'Please enter your email' }));
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        email: "Please enter your email",
+      }));
       isValid = false;
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      setErrors((prevErrors) => ({ ...prevErrors, email: 'Please enter a valid email address' }));
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        email: "Please enter a valid email address",
+      }));
       isValid = false;
     }
 
     if (!formData.password) {
-      setErrors((prevErrors) => ({ ...prevErrors, password: 'Please enter your password' }));
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        password: "Please enter your password",
+      }));
       isValid = false;
     }
 
     setErrors((prevErrors) => ({
       ...prevErrors,
-      general: '',
+      general: "",
     }));
 
     return isValid;
@@ -58,7 +70,7 @@ const Login = ({ title, setIsAuthenticated }) => {
       if (response.status === 200) {
         const data = response?.data;
 
-        if (data.status === 'success') {
+        if (data.status === "success") {
           setUserInfo(data.user, rememberMe);
           setToken(data.token, rememberMe);
           setUserPermissions(data.user.permissions, rememberMe);
@@ -66,19 +78,19 @@ const Login = ({ title, setIsAuthenticated }) => {
           setLoading(false);
           setIsAuthenticated(true);
 
-          const from = location.state?.from?.pathname || '/dashboard';
-          console.log(from)
+          const from = location.state?.from?.pathname || "/dashboard";
+          console.log(from);
           navigate(from);
         } else {
           setErrors((prevErrors) => ({
             ...prevErrors,
-            general: data.message || 'Login failed. Please try again.',
+            general: data.message || "Login failed. Please try again.",
           }));
         }
       } else {
         setErrors((prevErrors) => ({
           ...prevErrors,
-          general: 'Login failed. Please try again.',
+          general: "Login failed. Please try again.",
         }));
       }
     } catch (error) {
@@ -87,7 +99,7 @@ const Login = ({ title, setIsAuthenticated }) => {
         general:
           error?.response?.data?.message ||
           error?.message ||
-          'Something went wrong',
+          "Something went wrong",
       }));
     } finally {
       setLoading(false);
@@ -96,7 +108,7 @@ const Login = ({ title, setIsAuthenticated }) => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    Object.keys(errors).forEach((key) => name === key && (errors[key] = ''));
+    Object.keys(errors).forEach((key) => name === key && (errors[key] = ""));
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
@@ -124,7 +136,11 @@ const Login = ({ title, setIsAuthenticated }) => {
                       </div>
                     </div>
                     <div className="col-5 align-self-end">
-                      <img src="assets/images/profile-img.png" alt="" className="img-fluid" />
+                      <img
+                        src="assets/images/profile-img.png"
+                        alt=""
+                        className="img-fluid"
+                      />
                     </div>
                   </div>
                 </div>
@@ -133,42 +149,66 @@ const Login = ({ title, setIsAuthenticated }) => {
                     <a href="index.html" className="auth-logo-light">
                       <div className="avatar-md profile-user-wid mb-4">
                         <span className="avatar-title rounded-circle bg-light">
-                          <img src="assets/images/logo-light.svg" alt="" className="rounded-circle" height="34" />
+                          <img
+                            src="assets/images/logo-light.svg"
+                            alt=""
+                            className="rounded-circle"
+                            height="34"
+                          />
                         </span>
                       </div>
                     </a>
                     <a href="index.html" className="auth-logo-dark">
                       <div className="avatar-md profile-user-wid mb-4">
                         <span className="avatar-title rounded-circle bg-light">
-                          <img src="assets/images/logo.svg" alt="" className="rounded-circle" height="34" />
+                          <img
+                            src="assets/images/logo.svg"
+                            alt=""
+                            className="rounded-circle"
+                            height="34"
+                          />
                         </span>
                       </div>
                     </a>
                   </div>
                   <div className="p-2">
                     <form onSubmit={handleLogin} className="form-horizontal">
-                      {errors.general && <div className="alert alert-danger ps-3">{errors.general}</div>}
+                      {errors.general && (
+                        <div className="alert alert-danger ps-3">
+                          {errors.general}
+                        </div>
+                      )}
 
                       <div className="mb-3">
-                        <label htmlFor="email" className="form-label">Email</label>
+                        <label htmlFor="email" className="form-label">
+                          Email
+                        </label>
                         <input
                           type="text"
-                          className={`form-control ${errors.email ? 'is-invalid' : ''}`}
+                          className={`form-control ${
+                            errors.email ? "is-invalid" : ""
+                          }`}
                           id="email"
                           name="email"
                           placeholder="Enter email"
                           value={formData.email}
                           onChange={handleInputChange}
                         />
-                        {errors.email && <div className="invalid-feedback">{errors.email}</div>}
+                        {errors.email && (
+                          <div className="invalid-feedback">{errors.email}</div>
+                        )}
                       </div>
 
                       <div className="mb-3">
-                        <label htmlFor="password" className="form-label">Password</label>
+                        <label htmlFor="password" className="form-label">
+                          Password
+                        </label>
                         <div className="input-group auth-pass-inputgroup">
                           <input
-                            type={passwordVisible ? 'text' : 'password'}
-                            className={`form-control ${errors.password ? 'is-invalid' : ''}`}
+                            type={passwordVisible ? "text" : "password"}
+                            className={`form-control ${
+                              errors.password ? "is-invalid" : ""
+                            }`}
                             id="password"
                             name="password"
                             placeholder="Enter password"
@@ -181,9 +221,19 @@ const Login = ({ title, setIsAuthenticated }) => {
                             id="password-addon"
                             onClick={togglePasswordVisibility}
                           >
-                            <i className={`mdi ${passwordVisible ? 'mdi-eye-off' : 'mdi-eye-outline'}`}></i>
+                            <i
+                              className={`mdi ${
+                                passwordVisible
+                                  ? "mdi-eye-off"
+                                  : "mdi-eye-outline"
+                              }`}
+                            ></i>
                           </button>
-                          {errors.password && <div className="invalid-feedback">{errors.password}</div>}
+                          {errors.password && (
+                            <div className="invalid-feedback">
+                              {errors.password}
+                            </div>
+                          )}
                         </div>
                       </div>
 
@@ -195,20 +245,30 @@ const Login = ({ title, setIsAuthenticated }) => {
                           checked={rememberMe}
                           onChange={handleRememberMeChange}
                         />
-                        <label className="form-check-label" htmlFor="remember-check">
+                        <label
+                          className="form-check-label"
+                          htmlFor="remember-check"
+                        >
                           Remember me
                         </label>
                       </div>
 
                       <div className="mt-3 d-grid">
-                        <button className="btn btn-primary waves-effect waves-light d-flex align-items-center justify-content-center gap-2" type="submit" disabled={loading}>
+                        <button
+                          className="btn btn-primary waves-effect waves-light d-flex align-items-center justify-content-center gap-2"
+                          type="submit"
+                          disabled={loading}
+                        >
                           {loading && <Spinner />}
                           Log In
                         </button>
                       </div>
 
                       <div className="mt-4 text-center">
-                        <Link to='/forgot-password' className="text-muted"><i className="mdi mdi-lock me-1"></i> Forgot your password?</Link>
+                        <Link to="/forgot-password" className="text-muted">
+                          <i className="mdi mdi-lock me-1"></i> Forgot your
+                          password?
+                        </Link>
                       </div>
                     </form>
                   </div>

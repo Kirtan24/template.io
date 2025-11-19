@@ -1,5 +1,5 @@
-require('dotenv').config();
-var mongoose = require('mongoose');
+require("dotenv").config();
+var mongoose = require("mongoose");
 
 const connectToDb = async () => {
   try {
@@ -7,11 +7,10 @@ const connectToDb = async () => {
     console.log("Database connected successfully");
 
     const db = mongoose.connection;
-    db.on('error', console.error.bind(console, 'connection error: '));
-    db.once('open', function () {
+    db.on("error", console.error.bind(console, "connection error: "));
+    db.once("open", function () {
       console.log(`Connected to ${process.env.DB_URL}`);
     });
-
   } catch (err) {
     console.log("Database connection error:", err);
   }

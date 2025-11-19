@@ -11,7 +11,7 @@ import Title from "../Title";
 const { API_URL } = config;
 
 const ViewCompany = ({ title }) => {
-  const id = getItem('company_profile_data');
+  const id = getItem("company_profile_data");
   const [company, setCompany] = useState(null);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
@@ -81,7 +81,12 @@ const ViewCompany = ({ title }) => {
                     <>
                       <div className="row">
                         {Object.keys(company).map((key) => {
-                          if (key === "_id" || key === "permissions" || key === "id" || key === "updatedAt")
+                          if (
+                            key === "_id" ||
+                            key === "permissions" ||
+                            key === "id" ||
+                            key === "updatedAt"
+                          )
                             return null;
 
                           return (

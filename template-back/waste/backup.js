@@ -79,7 +79,7 @@ async function insertBackupData() {
     await mongoose.connect(mongoURI, { serverSelectionTimeoutMS: 5000 });
     console.log("✅ Connected to MongoDB\n");
 
-    const backupData = require("./backup/new-backup.json");
+    const backupData = require("./backup/my-backup.json");
 
     // Step 1: Restore Plans first
     if (backupData.plans && backupData.plans.length > 0) {

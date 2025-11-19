@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
+
 const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
 const http = require("http");
@@ -8,13 +9,15 @@ const allRoutes = require("./src/routes");
 const { connectToDb } = require("./src/config/mongo.config");
 const { initSocket } = require("./src/sockets/socketIO");
 const { startJobWorker } = require("./src/workers/jobWorker");
+const morgan = require("morgan");
 
 process.env.TZ = "Asia/Kolkata";
 
 const app = express();
+app.use(morgan("dev"));
 const server = http.createServer(app);
 const PORT = process.env.PORT || 8000;
-const FRONT_URL = process.env.FRONT_URL || "http://localhost:3000";
+// const FRONT_URL = process.env.FRONT_URL || "http://localhost:3000";
 
 // ---------- Middlewares ----------
 app.use(express.json({ limit: "50mb" }));
@@ -28,19 +31,45 @@ app.use(express.urlencoded({ extended: true }));
 //   })
 // );
 
-const allowedOrigins = ["http://localhost:3000", "http://127.0.0.1:3000"];
+// const allowedOrigins = [
+//   "http://localhost:3000", // for local dev
+//   "http://127.0.0.1:3000", // sometimes used locally
+//   "http://frontend", // frontend container inside Docker
+// ];
+
+// app.use(
+//   cors({
+//     origin: (origin, callback) => {
+//       if (!origin || allowedOrigins.includes(origin)) {
+//         callback(null, true);
+//       } else {
+//         callback(new Error("Not allowed by CORS"));
+//       }
+//     },
+//     methods: ["GET", "POST", "DELETE", "PUT", "PATCH"],
+//     credentials: true,
+//   })
+// );
+
+// Parse allowed origins from environment variable
+const allowedOrigins = process.env.ALLOWED_ORIGINS
+  ? process.env.ALLOWED_ORIGINS.split(",").map((origin) => origin.trim())
+  : ["http://localhost:3000"];
 
 app.use(
   cors({
     origin: (origin, callback) => {
+      // Allow requests with no origin (mobile apps, Postman, curl, etc.)
       if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
+        console.log("❌ Blocked origin:", origin);
         callback(new Error("Not allowed by CORS"));
       }
     },
-    methods: ["GET", "POST", "DELETE", "PUT", "PATCH"],
+    methods: ["GET", "POST", "DELETE", "PUT", "PATCH", "OPTIONS"],
     credentials: true,
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 

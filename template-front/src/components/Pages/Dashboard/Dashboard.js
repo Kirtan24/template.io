@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
-import UserProfileCard from './UserProfileCard';
-import { notify } from '../../../utils/notifications/ToastNotification';
-import { getToken, getUserInfo } from '../../../utils/localStorageHelper';
-import { hasPermission } from '../../../utils/helpers/permissionCheck';
-import { handleError } from '../../../utils/errorHandling/errorHandler';
-import config from '../../../utils/helpers/helper';
-import Title from '../Title';
-import Spinner from '../../Spinner/Spinner';
-import { io } from 'socket.io-client';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import UserProfileCard from "./UserProfileCard";
+import { notify } from "../../../utils/notifications/ToastNotification";
+import { getToken, getUserInfo } from "../../../utils/localStorageHelper";
+import { hasPermission } from "../../../utils/helpers/permissionCheck";
+import { handleError } from "../../../utils/errorHandling/errorHandler";
+import config from "../../../utils/helpers/helper";
+import Title from "../Title";
+import Spinner from "../../Spinner/Spinner";
+import { io } from "socket.io-client";
 
 const { API_URL, SOCKET_URL } = config;
 
@@ -33,7 +33,7 @@ const Dashboard = ({ title }) => {
     totalActiveDashboards: false,
   });
 
-  const [role, setRole] = useState('');
+  const [role, setRole] = useState("");
   const [loading, setLoading] = useState(false);
 
   const fetchDashboardStats = async () => {
@@ -41,10 +41,10 @@ const Dashboard = ({ title }) => {
       setLoading(true);
       const token = getToken();
       const response = await axios.get(`${API_URL}/user/dashboard/stats`, {
-        headers: { 'Authorization': `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${token}` },
       });
 
-      if (response.data.status === 'success') {
+      if (response.data.status === "success") {
         setDashboardStats(response.data.data);
       }
     } catch (error) {
@@ -61,38 +61,89 @@ const Dashboard = ({ title }) => {
 
   const socketHandler = (socket, storedUser) => {
     const emitWithLoading = (event, data, loadingKey) => {
-      setLoadingStates(prev => ({ ...prev, [loadingKey]: true }));
+      setLoadingStates((prev) => ({ ...prev, [loadingKey]: true }));
       socket.emit(event, data);
     };
 
-    socket.on('connect', () => {
+    socket.on("connect", () => {
       setLoading(true);
-      const isAdmin = hasPermission('only_admin');
-      socket.emit('user-connected', storedUser.id);
+      const isAdmin = hasPermission("only_admin");
+      socket.emit("user-connected", storedUser.id);
 
       if (isAdmin) {
-        emitWithLoading('get-total-companies', { userId: storedUser.id }, 'totalCompanies');
-        emitWithLoading('get-total-templates', { userId: storedUser.id }, 'totalTemplates');
+        emitWithLoading(
+          "get-total-companies",
+          { userId: storedUser.id },
+          "totalCompanies"
+        );
+        emitWithLoading(
+          "get-total-templates",
+          { userId: storedUser.id },
+          "totalTemplates"
+        );
       }
 
-      emitWithLoading('get-total-users', { userId: storedUser.id, companyId: storedUser.companyId || null }, 'totalUsers');
-      emitWithLoading('get-templates-created-by-company', { userId: storedUser.id, companyId: storedUser.companyId || null }, 'templatesCreatedByCompany');
+      emitWithLoading(
+        "get-total-users",
+        { userId: storedUser.id, companyId: storedUser.companyId || null },
+        "totalUsers"
+      );
+      emitWithLoading(
+        "get-templates-created-by-company",
+        { userId: storedUser.id, companyId: storedUser.companyId || null },
+        "templatesCreatedByCompany"
+      );
 
       if (!isAdmin) {
-        emitWithLoading('get-total-active-dashboards', { userId: storedUser.id, companyId: storedUser.companyId || null }, 'totalActiveDashboards');
+        emitWithLoading(
+          "get-total-active-dashboards",
+          { userId: storedUser.id, companyId: storedUser.companyId || null },
+          "totalActiveDashboards"
+        );
       }
     });
 
     const updateStats = (key, data) => {
-      setDashboardStats(prev => ({ ...prev, [key]: data }));
-      setLoadingStates(prev => ({ ...prev, [key]: false }));
+      let value = 0;
+
+      // If backend sends an object like { status, total, error }
+      if (data && typeof data === "object") {
+        // If it contains a numeric total, use that
+        if (typeof data.total === "number") {
+          value = data.total;
+        } else {
+          // fallback for unexpected objects
+          console.warn(`⚠️ Unexpected object in ${key}:`, data);
+          value = 0;
+        }
+      }
+      // If backend already sends a number
+      else if (typeof data === "number") {
+        value = data;
+      }
+      // Anything else (string, null, undefined)
+      else {
+        value = 0;
+      }
+
+      setDashboardStats((prev) => ({ ...prev, [key]: value }));
+      setLoadingStates((prev) => ({ ...prev, [key]: false }));
     };
 
-    socket.on('total-companies', data => updateStats('totalCompanies', data));
-    socket.on('total-users', data => updateStats('totalUsers', data));
-    socket.on('total-templates', data => updateStats('totalTemplates', data));
-    socket.on('templates-created-by-company', data => updateStats('templatesCreatedByCompany', data));
-    socket.on('total-active-dashboards', data => updateStats('totalActiveDashboards', data));
+    // const updateStats = (key, data) => {
+    //   setDashboardStats((prev) => ({ ...prev, [key]: data }));
+    //   setLoadingStates((prev) => ({ ...prev, [key]: false }));
+    // };
+
+    socket.on("total-companies", (data) => updateStats("totalCompanies", data));
+    socket.on("total-users", (data) => updateStats("totalUsers", data));
+    socket.on("total-templates", (data) => updateStats("totalTemplates", data));
+    socket.on("templates-created-by-company", (data) =>
+      updateStats("templatesCreatedByCompany", data)
+    );
+    socket.on("total-active-dashboards", (data) =>
+      updateStats("totalActiveDashboards", data)
+    );
   };
 
   useEffect(() => {
@@ -109,7 +160,7 @@ const Dashboard = ({ title }) => {
   }, []);
 
   useEffect(() => {
-    if (Object.values(loadingStates).every(val => !val)) {
+    if (Object.values(loadingStates).every((val) => !val)) {
       setLoading(false);
     }
   }, [loadingStates]);
@@ -125,14 +176,14 @@ const Dashboard = ({ title }) => {
         </div>
       </div>
 
-      {role !== 'user' && (
+      {role !== "user" && (
         <div className="row">
           <div className="col-xl-4">
             <UserProfileCard />
           </div>
           <div className="col-xl-8">
             <div className="row">
-              {hasPermission('only_admin') && (
+              {hasPermission("only_admin") && (
                 <StatCard
                   label="Total Companies"
                   value={dashboardStats.totalCompanies}
@@ -148,7 +199,7 @@ const Dashboard = ({ title }) => {
                 link="/user"
               />
 
-              {hasPermission('only_admin') && (
+              {hasPermission("only_admin") && (
                 <StatCard
                   label="Total Templates"
                   value={dashboardStats.totalTemplates}
@@ -164,7 +215,7 @@ const Dashboard = ({ title }) => {
                 link="/template"
               />
 
-              {!hasPermission('only_admin') && (
+              {!hasPermission("only_admin") && (
                 <StatCard
                   label="Total Active Dashboards"
                   value={dashboardStats.totalActiveDashboards}
@@ -187,17 +238,16 @@ const StatCard = ({ label, value, isLoading, link }) => (
           <div className="media-body">
             <p className="text-muted fw-medium">{label}</p>
             <h4 className="mb-0 d-flex align-items-center">
-              {!isLoading ? (
-                value
-              ) : (
-                <Spinner className="dark" />
-              )}
+              {!isLoading ? value : <Spinner className="dark" />}
             </h4>
           </div>
           {link && (
             <div className="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
               <Link to={link} className="avatar-title no-hover-effect">
-                <i className="bx bx-right-arrow-alt" style={{ fontSize: '25px' }}></i>
+                <i
+                  className="bx bx-right-arrow-alt"
+                  style={{ fontSize: "25px" }}
+                ></i>
               </Link>
             </div>
           )}
@@ -208,7 +258,6 @@ const StatCard = ({ label, value, isLoading, link }) => (
 );
 
 export default Dashboard;
-
 
 // import React, { useEffect, useRef, useState } from 'react';
 // import axios from 'axios';
@@ -244,7 +293,6 @@ export default Dashboard;
 //     templatesCreatedByCompany: false,
 //     totalActiveDashboards: false,
 //   });
-
 
 //   const [role, setRole] = useState('');
 //   const [loading, setLoading] = useState(false);

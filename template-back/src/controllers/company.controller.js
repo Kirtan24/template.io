@@ -7,18 +7,42 @@ const nodemailer = require("nodemailer");
 const bcrypt = require("bcrypt");
 const { sendEmail } = require("../services/mail.service");
 
+// const getAllCompanies = async (req, res) => {
+//   try {
+//     const companies = await companyModel
+//       .find()
+//       .populate("permissions")
+//       .populate("plan", "name")
+//       .sort({ createdAt: -1 });
+//     res.status(200).json({ companies });
+//   } catch (error) {
+//     res
+//       .status(500)
+//       .json({ message: "Error fetching companies", error: error.message });
+//   }
+// };
+
 const getAllCompanies = async (req, res) => {
   try {
-    const companies = await companyModel
+    let companies = await companyModel
       .find()
       .populate("permissions")
       .populate("plan", "name")
-      .sort({ createdAt: -1 });
+      .sort({ createdAt: -1 })
+      .lean();
+
+    // 🛠 Fix: Ensure plan is ALWAYS an object
+    companies = companies.map((c) => ({
+      ...c,
+      plan: c.plan || { name: "No Plan" },
+    }));
+
     res.status(200).json({ companies });
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Error fetching companies", error: error.message });
+    res.status(500).json({
+      message: "Error fetching companies",
+      error: error.message,
+    });
   }
 };
 
@@ -108,12 +132,10 @@ const updatePermissions = async (req, res) => {
         await user.save();
       }
 
-      res
-        .status(200)
-        .json({
-          message: "Company permissions updated and user permissions adjusted.",
-          company,
-        });
+      res.status(200).json({
+        message: "Company permissions updated and user permissions adjusted.",
+        company,
+      });
     } else if (type === "u") {
       const user = await userModel.findById(id);
       if (!user) {
@@ -149,12 +171,10 @@ const getCompanyById = async (req, res) => {
 
     res.status(200).json({ company });
   } catch (error) {
-    res
-      .status(500)
-      .json({
-        message: "Error fetching company details",
-        error: error.message,
-      });
+    res.status(500).json({
+      message: "Error fetching company details",
+      error: error.message,
+    });
   }
 };
 
@@ -190,12 +210,10 @@ const companyProfile = async (req, res) => {
 
     res.status(200).json({ company });
   } catch (error) {
-    res
-      .status(500)
-      .json({
-        message: "Error fetching company profile",
-        error: error.message,
-      });
+    res.status(500).json({
+      message: "Error fetching company profile",
+      error: error.message,
+    });
   }
 };
 

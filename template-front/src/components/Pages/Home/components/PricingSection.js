@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import { FaCheck, FaTimes } from "react-icons/fa";
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import config from '../../../../utils/helpers/helper';
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import config from "../../../../utils/helpers/helper";
 
 const { API_URL } = config;
 
@@ -14,16 +14,17 @@ const PricingSection = () => {
     const fetchPlans = async () => {
       try {
         const response = await axios.get(`${API_URL}/plans`);
+        console.log(response.data);
         setPlans(response.data);
       } catch (error) {
-        console.error('Error fetching plans:', error);
+        console.error("Error fetching plans:", error);
       }
     };
     fetchPlans();
   }, []);
 
   const handlePlanClick = (planName) => {
-    navigate('/subscription', { state: { selectedPlan: planName } });
+    navigate("/subscription", { state: { selectedPlan: planName } });
   };
 
   return (

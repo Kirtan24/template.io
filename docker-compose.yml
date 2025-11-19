@@ -1,15 +1,15 @@
 services:
-  # mongo:
-  #   image: mongo
-  #   container_name: mongo-container
-  #   ports:
-  #     - "27017:27017"
-  #   env_file:
-  #     - ./template-back/.env
-  #   volumes:
-  #     - mongo_data:/data/db
-  #   networks:
-  #     - template_net
+  mongo:
+    image: mongo
+    container_name: mongo-container
+    ports:
+      - "27017:27017"
+    env_file:
+      - ./template-back/.env
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - template_net
 
   # Backend
   backend:
@@ -36,13 +36,15 @@ services:
       - "3000:80"
     env_file:
       - ./template-front/.env
+    environment:
+      - ALLOWED_ORIGINS=http://localhost:3000,http://localhost,http://frontend
     depends_on:
       - backend
     networks:
       - template_net
 
-# volumes:
-#   mongo_data:
+volumes:
+  mongo_data:
 
 networks:
   template_net:

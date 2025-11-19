@@ -59,4 +59,8 @@ npm install
 # Install frontend dependencies
 cd ../frontend
 npm install
+
+# Backup
+docker exec -it -e MONGO_URI="mongodb://mongo:27017/template" backend node waste/backup.js r
+
 ```

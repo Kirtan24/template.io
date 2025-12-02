@@ -20,11 +20,19 @@ import ResetPassword from "./components/Auth/ResetPassword";
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(!!getToken());
   const [loading, setLoading] = useState(true);
+  const location = useLocation();
 
   useEffect(() => {
     setIsAuthenticated(!!getToken());
     setLoading(false);
   }, []);
+
+  // Re-check authentication when route changes
+  useEffect(() => {
+    const token = getToken();
+    const authenticated = !!token;
+    setIsAuthenticated(authenticated);
+  }, [location.pathname]);
 
   if (loading) {
     return (

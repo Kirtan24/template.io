@@ -1,45 +1,95 @@
-import Cookies from 'js-cookie';
 import CryptoJS from 'crypto-js';
 import config from './helpers/helper';
 
 const { SECRET_KEY } = config;
 
+// Warn if SECRET_KEY is not set (only in development)
+if (process.env.NODE_ENV === 'development' && !SECRET_KEY) {
+  console.warn('⚠️ REACT_APP_SECRET_KEY is not set in your .env file. Data will be stored without encryption.');
+}
+
 // ----- Encryption Helpers -----
 
 const encrypt = (data) => {
-  const ciphertext = CryptoJS.AES.encrypt(JSON.stringify(data), SECRET_KEY).toString();
-  return ciphertext;
+  try {
+    if (!SECRET_KEY) {
+      // Fallback: store without encryption if SECRET_KEY is missing
+      return JSON.stringify(data);
+    }
+    const ciphertext = CryptoJS.AES.encrypt(JSON.stringify(data), SECRET_KEY).toString();
+    return ciphertext;
+  } catch (error) {
+    console.error('Error encrypting data:', error);
+    // Fallback: store without encryption on error
+    return JSON.stringify(data);
+  }
 };
 
 const decrypt = (ciphertext) => {
   try {
+    if (!ciphertext) {
+      return null;
+    }
+    
+    if (!SECRET_KEY) {
+      // Try to parse as plain JSON if SECRET_KEY is missing
+      return JSON.parse(ciphertext);
+    }
+    
     const bytes = CryptoJS.AES.decrypt(ciphertext, SECRET_KEY);
     const decrypted = bytes.toString(CryptoJS.enc.Utf8);
+    
+    if (!decrypted) {
+      // If decryption returns empty, try parsing as plain JSON (fallback for unencrypted data)
+      return JSON.parse(ciphertext);
+    }
+    
     return JSON.parse(decrypted);
   } catch (error) {
-    console.error('Error decrypting cookie:', error);
-    return null;
+    console.error('Error decrypting data:', error);
+    // Try to parse as plain JSON if decryption fails
+    try {
+      return JSON.parse(ciphertext);
+    } catch (parseError) {
+      console.error('Failed to parse data as JSON:', parseError);
+      return null;
+    }
   }
 };
 
 // ----- Utility Functions -----
 
-const setCookieJSON = (key, value, rememberMe) => {
+const setLocalStorageJSON = (key, value, rememberMe) => {
   try {
-    const durationInMinutes = rememberMe ? 1440 : 120;
-    const expiresInDays = durationInMinutes / (24 * 60);
-    Cookies.set(key, encrypt(value), { expires: expiresInDays });
+    const encryptedValue = encrypt(value);
+    
+    if (!encryptedValue) {
+      throw new Error(`Failed to encrypt value for ${key}`);
+    }
+    
+    localStorage.setItem(key, encryptedValue);
+    
+    // Verify the value was set immediately
+    const verifyValue = localStorage.getItem(key);
+    if (!verifyValue) {
+      const error = new Error(`Failed to save ${key} to localStorage. Check browser storage settings.`);
+      console.error(error.message);
+      throw error;
+    }
+    
+    return true;
   } catch (error) {
-    console.error(`Error setting ${key} in cookies`, error);
+    console.error(`Error setting ${key} in localStorage:`, error);
+    throw error; // Re-throw so caller can handle it
   }
 };
 
-const getCookieJSON = (key) => {
+const getLocalStorageJSON = (key) => {
   try {
-    const item = Cookies.get(key);
+    const item = localStorage.getItem(key);
     return item ? decrypt(item) : null;
   } catch (error) {
-    console.error(`Error getting ${key} from cookies`, error);
+    console.error(`Error getting ${key} from localStorage`, error);
     return null;
   }
 };
@@ -48,19 +98,19 @@ const getCookieJSON = (key) => {
 // ----- Public API -----
 
 export const setItem = (key, value, rememberMe = false) => {
-  setCookieJSON(key, value, rememberMe);
+  setLocalStorageJSON(key, value, rememberMe);
 };
 
 export const getItem = (key) => {
-  return getCookieJSON(key);
+  return getLocalStorageJSON(key);
 };
 
 export const setToken = (token, rememberMe = false) => {
-  setCookieJSON('token', { token }, rememberMe);
+  setLocalStorageJSON('token', { token }, rememberMe);
 };
 
 export const getToken = () => {
-  const data = getCookieJSON('token');
+  const data = getLocalStorageJSON('token');
   return data?.token || null;
 };
 
@@ -88,15 +138,15 @@ export const clearUserData = () => {
     removeItem('userInfo');
     removeItem('permissions_list');
   } catch (error) {
-    console.error('Error clearing user data from cookies', error);
+    console.error('Error clearing user data from localStorage', error);
   }
 };
 
 export const removeItem = (key) => {
   try {
-    Cookies.remove(key);
+    localStorage.removeItem(key);
   } catch (error) {
-    console.error(`Error removing ${key} from cookies`, error);
+    console.error(`Error removing ${key} from localStorage`, error);
   }
 };
 

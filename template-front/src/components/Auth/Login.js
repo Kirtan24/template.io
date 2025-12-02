@@ -3,6 +3,7 @@ import {
   setToken,
   setUserInfo,
   setUserPermissions,
+  getToken,
 } from "../../utils/localStorageHelper";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -59,7 +60,11 @@ const Login = ({ title, setIsAuthenticated }) => {
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
-    if (!validateFormData()) return;
+    
+    if (!validateFormData()) {
+      setLoading(false);
+      return;
+    }
 
     try {
       const response = await axios.post(`${API_URL}/auth/login`, {
@@ -71,16 +76,60 @@ const Login = ({ title, setIsAuthenticated }) => {
         const data = response?.data;
 
         if (data.status === "success") {
-          setUserInfo(data.user, rememberMe);
-          setToken(data.token, rememberMe);
-          setUserPermissions(data.user.permissions, rememberMe);
+          // Save user data, token, and permissions
+          try {
+            console.log("Saving user data...", { 
+              hasToken: !!data.token, 
+              hasUser: !!data.user, 
+              hasPermissions: !!data.user?.permissions 
+            });
+            
+            // Save token first (most critical)
+            setToken(data.token, rememberMe);
+            console.log("Token saved, verifying...");
+            
+            // Immediately verify token was saved
+            let savedToken = getToken();
+            if (!savedToken) {
+              // Wait a bit and try again
+              await new Promise(resolve => setTimeout(resolve, 100));
+              savedToken = getToken();
+            }
+            
+            if (!savedToken) {
+              const rawStorage = localStorage.getItem('token');
+              console.error("Token verification failed", {
+                rawStorageExists: !!rawStorage,
+                rawStorageLength: rawStorage?.length,
+                secretKeyExists: !!config.SECRET_KEY
+              });
+              throw new Error("Token was not saved or could not be retrieved from localStorage");
+            }
+            
+            console.log("Token verified, saving other data...");
+            
+            // Save user info and permissions
+            setUserInfo(data.user, rememberMe);
+            setUserPermissions(data.user.permissions, rememberMe);
+            
+            console.log("All data saved successfully");
+            
+          } catch (saveError) {
+            console.error("Error saving user data:", saveError);
+            setErrors((prevErrors) => ({
+              ...prevErrors,
+              general: saveError.message || "Failed to save authentication data. Please check browser cookie settings and try again.",
+            }));
+            setLoading(false);
+            return;
+          }
 
-          setLoading(false);
+          // Update authentication state
           setIsAuthenticated(true);
 
           const from = location.state?.from?.pathname || "/dashboard";
-          console.log(from);
-          navigate(from);
+          console.log("Login successful, navigating to:", from);
+          navigate(from, { replace: true });
         } else {
           setErrors((prevErrors) => ({
             ...prevErrors,

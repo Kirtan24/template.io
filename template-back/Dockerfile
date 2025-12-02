@@ -12,13 +12,14 @@ RUN npm install --build-from-source bcrypt
 COPY . .
 
 # Expose the backend port
-EXPOSE 8000
+EXPOSE 5000
 
 # Set environment
 ENV NODE_ENV=production
 
 # Run MongoDB backup before starting the server
-CMD ["sh", "-c", "node waste/backup.js || echo '⚠️ Backup failed or skipped'; node server.js"]
+CMD ["node", "server.js"]
+# CMD ["sh", "-c", "node waste/backup.js || echo '⚠️ Backup failed or skipped'; node server.js"]
 
 
 

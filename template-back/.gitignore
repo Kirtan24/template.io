@@ -1,5 +1,5 @@
 /node_modules
-/waste/*
+/waste
 !/waste/backup.js
 /uploadfiles
 .env
@@ -7,3 +7,6 @@
 .eslintcache
 logs
 steps.txt
+/test
+printFolder.js
+printFolderData.js

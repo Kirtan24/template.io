@@ -68,7 +68,9 @@
       "updatedAt": "2025-03-31T12:43:29.586Z",
       "__v": 29,
       "activeDashboard": 1,
-      "lastLoggedInUser": ["67c060d98882176e55b81dd9"],
+      "lastLoggedInUser": [
+        "67c060d98882176e55b81dd9"
+      ],
       "lastUpdated": "2025-03-31T12:43:29.586Z"
     },
     {
@@ -761,7 +763,7 @@
         }
       ],
       "deleted": false,
-      "createdAt": "2025`-03-30T19:33:53.409Z",
+      "createdAt": "2025-03-30T19:33:53.409Z",
       "updatedAt": "2025-03-30T20:27:38.026Z",
       "__v": 0
     }

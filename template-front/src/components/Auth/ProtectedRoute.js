@@ -2,7 +2,7 @@ import React from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { getToken, getUserPermissions } from '../../utils/localStorageHelper';
 
-const ProtectedRoute = ({ children, requiredPermissions }) => {
+const ProtectedRoute = ({ children, requiredPermissions = [] }) => {
   const location = useLocation();
 
   const token = getToken();
@@ -12,9 +12,15 @@ const ProtectedRoute = ({ children, requiredPermissions }) => {
     return <Navigate to="/login" state={{ from: location }} />;
   }
 
-  const userPermissions = getUserPermissions();
+  const userPermissions = getUserPermissions() || [];
+  const requiredPerms = Array.isArray(requiredPermissions) ? requiredPermissions : [];
 
-  const hasPermission = requiredPermissions.every((perm) =>
+  // If no permissions required, allow access
+  if (requiredPerms.length === 0) {
+    return children;
+  }
+
+  const hasPermission = requiredPerms.every((perm) =>
     userPermissions.includes(perm)
   );
 

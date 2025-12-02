@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { hasPermission } from '../../../utils/helpers/permissionCheck';
+import { clearUserData } from '../../../utils/localStorageHelper';
 import './Sidebar.css';
 
 const Sidebar = ({ isOpen }) => {
@@ -25,7 +26,7 @@ const Sidebar = ({ isOpen }) => {
   }, [location.pathname]);
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
+    clearUserData();
     navigate('/login');
   };
 

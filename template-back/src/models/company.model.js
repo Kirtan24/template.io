@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
-const mongoose_delete = require("mongoose-delete");
-const { models } = require("../constants/index");
+const mongoose = require('mongoose');
+const mongoose_delete = require('mongoose-delete');
+const { models } = require('../constants/index');
 
 const companySchema = new mongoose.Schema(
   {
@@ -35,11 +35,11 @@ const companySchema = new mongoose.Schema(
         type: mongoose.Schema.Types.ObjectId,
         ref: models.PERMISSION,
       },
-    ],
+    ], 
     companyStatus: {
       type: String,
-      enum: ["active", "inactive", "suspended"],
-      default: "inactive",
+      enum: ['active', 'inactive', 'suspended'],
+      default: 'inactive',
     },
     lastUpdated: {
       type: Date,
@@ -60,15 +60,15 @@ const companySchema = new mongoose.Schema(
 companySchema.plugin(mongoose_delete, {
   deletedAt: true,
   deletedBy: true,
-  overrideMethods: ["find", "findOne", "count", "countDocuments", "aggregate"],
+  overrideMethods: ['find', 'findOne', 'count', 'countDocuments', 'aggregate'],
 });
 
-companySchema.virtual("isActive").get(function () {
-  return this.companyStatus === "active";
+companySchema.virtual('isActive').get(function () {
+  return this.companyStatus === 'active';
 });
 
-companySchema.virtual("isSuspended").get(function () {
-  return this.companyStatus === "suspended";
+companySchema.virtual('isSuspended').get(function () {
+  return this.companyStatus === 'suspended';
 });
 
 module.exports = mongoose.model(models.COMPANY, companySchema);

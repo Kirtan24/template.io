@@ -1,48 +1,24 @@
 require("dotenv").config();
 const companyModel = require("../models/company.model");
 const templateModel = require("../models/template.model");
-const emailTemplateModel = require("../models/emailtemplate.model");
+const emailTemplateModel = require("../models/emailTemplate.model");
 const userModel = require("../models/user.model");
 const nodemailer = require("nodemailer");
 const bcrypt = require("bcrypt");
 const { sendEmail } = require("../services/mail.service");
 
-// const getAllCompanies = async (req, res) => {
-//   try {
-//     const companies = await companyModel
-//       .find()
-//       .populate("permissions")
-//       .populate("plan", "name")
-//       .sort({ createdAt: -1 });
-//     res.status(200).json({ companies });
-//   } catch (error) {
-//     res
-//       .status(500)
-//       .json({ message: "Error fetching companies", error: error.message });
-//   }
-// };
-
 const getAllCompanies = async (req, res) => {
   try {
-    let companies = await companyModel
+    const companies = await companyModel
       .find()
       .populate("permissions")
       .populate("plan", "name")
-      .sort({ createdAt: -1 })
-      .lean();
-
-    // 🛠 Fix: Ensure plan is ALWAYS an object
-    companies = companies.map((c) => ({
-      ...c,
-      plan: c.plan || { name: "No Plan" },
-    }));
-
+      .sort({ createdAt: -1 });
     res.status(200).json({ companies });
   } catch (error) {
-    res.status(500).json({
-      message: "Error fetching companies",
-      error: error.message,
-    });
+    res
+      .status(500)
+      .json({ message: "Error fetching companies", error: error.message });
   }
 };
 

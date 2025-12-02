@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
-const mongoose_delete = require("mongoose-delete");
-const { models } = require("../constants/index");
+const mongoose = require('mongoose');
+const mongoose_delete = require('mongoose-delete');
+const { models } = require('../constants/index');
 
 const emailTemplateSchema = new mongoose.Schema(
   {
@@ -31,7 +31,7 @@ const emailTemplateSchema = new mongoose.Schema(
 emailTemplateSchema.plugin(mongoose_delete, {
   deletedAt: true,
   deletedBy: true,
-  overrideMethods: ["find", "findOne", "count", "countDocuments", "aggregate"],
+  overrideMethods: ['find', 'findOne', 'count', 'countDocuments', 'aggregate'],
 });
 
 module.exports = mongoose.model(models.EMAIL_TEMPLATE, emailTemplateSchema);

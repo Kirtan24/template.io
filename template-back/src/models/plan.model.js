@@ -43,6 +43,10 @@ const planSchema = new mongoose.Schema({
     ref: models.PERMISSION,
     required: true,
   }],
+  activeDashboard: {
+    type: Number,
+    default: 0,
+  },
 });
 
 const Plan = mongoose.model(models.PLAN, planSchema);

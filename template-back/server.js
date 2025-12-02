@@ -19,35 +19,44 @@ const FRONT_URL = process.env.FRONT_URL || "http://localhost:3000";
 // ---------- Middlewares ----------
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ extended: true }));
-// CORS configuration
-const allowedOrigins = new Set([
-  "http://localhost:3000",
-  "http://localhost",
-  "http://frontend",
-]);
+// // CORS configuration
+// const allowedOrigins = new Set([
+//   "http://localhost:3000",
+//   "http://localhost",
+//   "http://frontend",
+// ]);
 
-if (FRONT_URL) {
-  FRONT_URL.split(",")
-    .map((s) => s.trim())
-    .filter(Boolean)
-    .forEach((url) => allowedOrigins.add(url));
-}
+// if (FRONT_URL) {
+//   FRONT_URL.split(",")
+//     .map((s) => s.trim())
+//     .filter(Boolean)
+//     .forEach((url) => allowedOrigins.add(url));
+// }
+
+// const corsOptions = {
+//   origin: function (origin, callback) {
+//     // Allow non-browser requests (curl, postman) with no origin
+//     if (!origin) return callback(null, true);
+//     if (allowedOrigins.has(origin)) {
+//       return callback(null, true);
+//     }
+//     return callback(new Error("CORS policy: Origin not allowed"));
+//   },
+//   methods: ["GET", "POST", "DELETE", "PUT", "PATCH"],
+//   credentials: true,
+// };
+
+// console.log("Allowed CORS origins:", Array.from(allowedOrigins));
+// app.use(cors(corsOptions));
 
 const corsOptions = {
-  origin: function (origin, callback) {
-    // Allow non-browser requests (curl, postman) with no origin
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.has(origin)) {
-      return callback(null, true);
-    }
-    return callback(new Error("CORS policy: Origin not allowed"));
-  },
+  origin: "*", // Allow all origins
   methods: ["GET", "POST", "DELETE", "PUT", "PATCH"],
-  credentials: true,
+  credentials: false, // Must be false when origin is "*"
 };
 
-console.log("Allowed CORS origins:", Array.from(allowedOrigins));
 app.use(cors(corsOptions));
+
 app.options("*", cors(corsOptions));
 app.use(helmet());
 app.use(rateLimit({ windowMs: 15 * 60 * 1000, max: 100 }));

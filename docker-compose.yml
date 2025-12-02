@@ -22,6 +22,8 @@ services:
       - "5000:5000"
     env_file:
       - ./template-back/.env
+    environment:
+      - FRONT_URL=http://localhost:3000,http://frontend
     networks:
       - template_net
 
@@ -30,12 +32,16 @@ services:
     build:
       context: ./template-front
       dockerfile: Dockerfile
+      args:
+        - REACT_APP_API_URL=http://backend:5000/api
     container_name: frontend
     restart: always
     ports:
       - "3000:80"
     env_file:
       - ./template-front/.env
+    environment:
+      - REACT_APP_API_URL=http://backend:5000/api
     # environment:
     #   - ALLOWED_ORIGINS=http://localhost:3000,http://localhost,http://frontend
     depends_on:

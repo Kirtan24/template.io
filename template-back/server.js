@@ -14,22 +14,41 @@ process.env.TZ = "Asia/Kolkata";
 const app = express();
 const server = http.createServer(app);
 const PORT = process.env.PORT || 5000;
-// const FRONT_URL = process.env.FRONT_URL || "http://localhost:3000";
+const FRONT_URL = process.env.FRONT_URL || "http://localhost:3000";
 
 // ---------- Middlewares ----------
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ extended: true }));
-app.use(
-  cors({
-    origin: [
-      "http://localhost:3000",
-      "http://localhost:3000",
-      "http://frontend",
-    ],
-    methods: ["GET", "POST", "DELETE", "PUT", "PATCH"],
-    credentials: true,
-  })
-);
+// CORS configuration
+const allowedOrigins = new Set([
+  "http://localhost:3000",
+  "http://localhost",
+  "http://frontend",
+]);
+
+if (FRONT_URL) {
+  FRONT_URL.split(",")
+    .map((s) => s.trim())
+    .filter(Boolean)
+    .forEach((url) => allowedOrigins.add(url));
+}
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    // Allow non-browser requests (curl, postman) with no origin
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.has(origin)) {
+      return callback(null, true);
+    }
+    return callback(new Error("CORS policy: Origin not allowed"));
+  },
+  methods: ["GET", "POST", "DELETE", "PUT", "PATCH"],
+  credentials: true,
+};
+
+console.log("Allowed CORS origins:", Array.from(allowedOrigins));
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
 app.use(helmet());
 app.use(rateLimit({ windowMs: 15 * 60 * 1000, max: 100 }));
 

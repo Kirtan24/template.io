@@ -1,7 +1,7 @@
 require("dotenv").config();
 const companyModel = require("../models/company.model");
 const templateModel = require("../models/template.model");
-const emailTemplateModel = require("../models/emailTemplate.model");
+const emailTemplateModel = require("../models/emailtemplate.model");
 const userModel = require("../models/user.model");
 const nodemailer = require("nodemailer");
 const bcrypt = require("bcrypt");

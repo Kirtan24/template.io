@@ -3,17 +3,31 @@ const path = require("path");
 const XLSX = require("xlsx");
 const crypto = require("crypto");
 const nodemailer = require("nodemailer");
-const cloudinary = require('cloudinary').v2;
+const cloudinary = require("cloudinary").v2;
 const inboxModel = require("../models/inbox.model");
 const templateModel = require("../models/template.model");
-const emailTemplateModel = require("../models/emailTemplate.model");
+const emailTemplateModel = require("../models/emailtemplate.model");
 const controller = require("../controllers/template.controller");
-const { generateDocx, convertToPDF } = require("../services/docProcessor.service");
-const { downloadCloudFile, deleteCloudFile } = require('../services/cloudinary.service');
+const {
+  generateDocx,
+  convertToPDF,
+} = require("../services/docProcessor.service");
+const {
+  downloadCloudFile,
+  deleteCloudFile,
+} = require("../services/cloudinary.service");
 const { emitToUser } = require("../utils/socketHelpers");
 
 async function processBulkTemplate(payload) {
-  const { templateId, fileName, mapping, companyId, excelFile, senderMail, user } = payload;
+  const {
+    templateId,
+    fileName,
+    mapping,
+    companyId,
+    excelFile,
+    senderMail,
+    user,
+  } = payload;
   const userId = user._id;
 
   const uploadedTempFiles = [];
@@ -38,7 +52,9 @@ async function processBulkTemplate(payload) {
     if (!emailTemplate) throw new Error("Email Template not found.");
     console.log("✅ Email template fetched");
 
-    const downloadedTemplatePath = await downloadCloudFile(`templates/${template.filename}`);
+    const downloadedTemplatePath = await downloadCloudFile(
+      `templates/${template.filename}`
+    );
     if (!downloadedTemplatePath) throw new Error("Template download failed.");
 
     uploadedTempFiles.push(downloadedTemplatePath);
@@ -47,7 +63,7 @@ async function processBulkTemplate(payload) {
       try {
         const formData = {};
         const fields = [];
-        let recipientEmail = row['Email'];
+        let recipientEmail = row["Email"];
 
         for (const [fieldName, excelColumn] of Object.entries(mappingObj)) {
           formData[fieldName] = row[excelColumn] || "";
@@ -71,19 +87,30 @@ async function processBulkTemplate(payload) {
 
         createdInboxes.push(newInbox._id);
 
-        const generatedDocxPath = await generateDocx(downloadedTemplatePath, formData, fields, newInbox._id);
+        const generatedDocxPath = await generateDocx(
+          downloadedTemplatePath,
+          formData,
+          fields,
+          newInbox._id
+        );
         uploadedTempFiles.push(generatedDocxPath);
         if (!generatedDocxPath) throw new Error("DOCX generation failed");
         console.log("✅ DOCX Created:", generatedDocxPath);
 
         const pdfFilePath = await convertToPDF(generatedDocxPath);
         uploadedTempFiles.push(pdfFilePath);
-        if (!fs.existsSync(pdfFilePath)) throw new Error("PDF generation failed");
+        if (!fs.existsSync(pdfFilePath))
+          throw new Error("PDF generation failed");
         console.log("✅ PDF Created:", pdfFilePath);
 
         const fileBuffer = fs.readFileSync(pdfFilePath);
         const renameFile = path.basename(pdfFilePath);
-        const cloudinaryResponse = await controller.uploadToCloudinary(fileBuffer, renameFile, "pdfs", "pdf");
+        const cloudinaryResponse = await controller.uploadToCloudinary(
+          fileBuffer,
+          renameFile,
+          "pdfs",
+          "pdf"
+        );
 
         if (!cloudinaryResponse) throw new Error("Cloudinary upload failed");
         uploadedCloudinaryPublicIds.push(cloudinaryResponse.public_id);
@@ -91,9 +118,14 @@ async function processBulkTemplate(payload) {
         console.log("✅ PDF Uploaded to Cloudinary");
 
         console.log("✅ Makeing the mail to send.");
-       
-        const subject = emailTemplate.subject.replace("{{templateTitle}}", template.title || "Document");
-        let emailBody = emailTemplate.body || "Hello,<br/>Please find your document attached.";
+
+        const subject = emailTemplate.subject.replace(
+          "{{templateTitle}}",
+          template.title || "Document"
+        );
+        let emailBody =
+          emailTemplate.body ||
+          "Hello,<br/>Please find your document attached.";
 
         const signUrl = `${process.env.FRONT_URL}/sign?token=${oneTimeToken}`;
         if (template.isSignature) {
@@ -109,7 +141,9 @@ async function processBulkTemplate(payload) {
         await newInbox.save();
         console.log("✅ New Inbox Saved");
 
-        const formattedSubject = subject.replace(/[^a-zA-Z0-9]/g, "_").substring(0, 50);
+        const formattedSubject = subject
+          .replace(/[^a-zA-Z0-9]/g, "_")
+          .substring(0, 50);
         const newFileName = `${formattedSubject}.pdf`;
 
         const mailOptions = {
@@ -144,9 +178,11 @@ async function processBulkTemplate(payload) {
           oneTimeToken,
           email: recipientEmail || "N/A",
         });
-
       } catch (rowError) {
-        console.error(`❌ Error processing row ${index + 1}:`, rowError.message);
+        console.error(
+          `❌ Error processing row ${index + 1}:`,
+          rowError.message
+        );
         throw rowError;
       }
     }
@@ -163,7 +199,6 @@ async function processBulkTemplate(payload) {
       message: `${result.length} PDF(s) processed and uploaded successfully.`,
       result,
     };
-
   } catch (error) {
     console.error("❌ Error in bulk processing:", error.message);
 
@@ -180,7 +215,7 @@ async function processBulkTemplate(payload) {
         console.log(publicId);
         await deleteCloudFile(publicId, {
           resourceType: "raw",
-          folder: "pdfs"
+          folder: "pdfs",
         });
       } catch (err) {
         console.error("❗ Error deleting Cloudinary file:", publicId, err);
@@ -189,10 +224,13 @@ async function processBulkTemplate(payload) {
 
     emitToUser(userId, "bulk-processing", {
       status: "failure",
-      message: "Some rows failed to process. All created resources have been rolled back.",
+      message:
+        "Some rows failed to process. All created resources have been rolled back.",
     });
 
-    throw new Error("Some rows failed to process. All created resources have been rolled back.");
+    throw new Error(
+      "Some rows failed to process. All created resources have been rolled back."
+    );
   } finally {
     for (const file of uploadedTempFiles) {
       if (file && fs.existsSync(file)) {
@@ -206,7 +244,6 @@ async function processBulkTemplate(payload) {
     }
   }
 }
-
 
 module.exports = {
   processBulkTemplate,

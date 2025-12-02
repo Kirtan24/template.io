@@ -11,6 +11,10 @@ RUN npm install
 # Copy the rest of the source code
 COPY . .
 
+# Allow build-time API URL override when building the image
+ARG REACT_APP_API_URL=http://localhost:5000/api
+ENV REACT_APP_API_URL=${REACT_APP_API_URL}
+
 # Build the production-ready React app
 RUN npm run build
 

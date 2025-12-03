@@ -122,14 +122,14 @@ const EmailTemplate = ({ title }) => {
               Edit
             </Link>
           )}
-          {hasPermission('send_emailtemplate') && (
+          {/* {hasPermission('send_emailtemplate') && (
             <button
               className="btn btn-secondary btn-sm mx-1"
               onClick={() => navigate(`/template/send/${row._id}`)}
             >
               Send
             </button>
-          )}
+          )} */}
           {hasPermission('delete_emailtemplate') && (
             <button
               onClick={() => deleteEmailTemplate(row.id)}

@@ -35,7 +35,7 @@ const Sidebar = ({ isOpen }) => {
   };
 
   return (
-    <div className={`vertical-menu ${isOpen ? 'sidebar-enable' : ''}`} ref={sidebarRef}>
+    <aside className={`vertical-menu ${isOpen ? 'sidebar-enable' : ''}`} ref={sidebarRef}>
       <div data-simplebar className="h-100">
         <div id="sidebar-menu">
           <ul className="list-unstyled" id="side-menu">
@@ -154,8 +154,7 @@ const Sidebar = ({ isOpen }) => {
           </ul>
         </div>
       </div>
-    </div>
-
+    </aside>
   );
 };
 

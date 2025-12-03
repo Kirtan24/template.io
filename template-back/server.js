@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
+const morgan = require("morgan");
 const rateLimit = require("express-rate-limit");
 const http = require("http");
 const allRoutes = require("./src/routes");
@@ -19,6 +20,8 @@ const FRONT_URL = process.env.FRONT_URL || "http://localhost:3000";
 // ---------- Middlewares ----------
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ extended: true }));
+// Simple request logging
+app.use(morgan("dev"));
 // // CORS configuration
 // const allowedOrigins = new Set([
 //   "http://localhost:3000",

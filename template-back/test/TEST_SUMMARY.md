@@ -73,4 +73,3 @@ Specification tests (property-based)
 - Replace ad-hoc chained mocks with small helper functions to keep mocking consistent across tests.
 
 ---
-Generated on: 2025-12-03

@@ -9,7 +9,7 @@ This README file contains the setup instructions, project structure, run instruc
 # 1. Clone the Repository
 
 ```
-git clone <your-github-repository-link>
+git clone https://github.com/Kirtan24/template.io
 cd template-io
 ```
 
@@ -31,7 +31,7 @@ Ensure the following are installed:
 ## 2.2 Backend Setup
 
 ```
-cd backend
+cd template-back
 npm install
 ```
 
@@ -61,7 +61,7 @@ npm run dev
 ## 2.3 Frontend Setup
 
 ```
-cd frontend
+cd template-front
 npm install
 ```
 

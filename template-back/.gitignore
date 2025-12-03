@@ -7,6 +7,5 @@
 .eslintcache
 logs
 steps.txt
-/test
 printFolder.js
 printFolderData.js
